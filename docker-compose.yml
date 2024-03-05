@@ -1,0 +1,60 @@
+version: '2.21.0-desktop.1'
+
+networks:
+  MasterStock:
+    external: true 
+
+services:
+  angular:
+    image: angular-docker:latest
+    ports:
+      - "4201:4200"
+    restart: always
+    volumes:
+      - .:/usr/app
+    networks:
+      - MasterStock
+    
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 8081:8081
+    volumes:
+      - .:/usr/app
+    networks:
+      - MasterStock
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example
+  
+  dockernode:
+    container_name: ServerNode
+    image: teste/dockernode:latest
+    labels:
+      "com.docker.container.metrics.enabled": "true"
+    build: .
+    command: npm start
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/app
+    networks:
+      - MasterStock
+    deploy:
+      resources:
+        limits:
+          cpus: '10'
+          memory: 1024M
+          
+  grafana:
+   image: grafana/grafana-enterprise
+   container_name: grafana
+   restart: unless-stopped
+   ports:
+   - '8080:8080'
+   networks:
+     - MasterStock
+   volumes:
+     - .:/usr/app  
