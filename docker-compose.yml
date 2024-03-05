@@ -1,60 +1,69 @@
-version: '2.21.0-desktop.1'
-
-networks:
-  MasterStock:
-    external: true 
+version: '3'
 
 services:
+  # Serviço de frontend
   angular:
-    image: angular-docker:latest
+    container_name: angular
+    build: frontend
     ports:
-      - "4201:4200"
-    restart: always
+      - "4200:4200"
     volumes:
-      - .:/usr/app
-    networks:
-      - MasterStock
-    
-  mongo:
-    image: mongo
-    restart: always
-    ports:
-      - 8081:8081
-    volumes:
-      - .:/usr/app
-    networks:
-      - MasterStock
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: example
+      - ./frontend:/frontend
+      - /frontend/node_modules
+    depends_on:
+      - node
+      - mongo
+      - mongo-express
   
-  dockernode:
-    container_name: ServerNode
-    image: teste/dockernode:latest
-    labels:
-      "com.docker.container.metrics.enabled": "true"
-    build: .
-    command: npm start
-    restart: unless-stopped
+  # Serviço de backend
+  node:
+    container_name: node
+    build: backend
     ports:
       - "3000:3000"
     volumes:
-      - .:/usr/app
-    networks:
-      - MasterStock
-    deploy:
-      resources:
-        limits:
-          cpus: '10'
-          memory: 1024M
+      - ./backend:/backend
+      - /backend/node_modules
+    depends_on:
+      - mongo
+
+  # Serviço de banco de dados
+  mongo:
+    container_name: mongo
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - ./data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root_mongo_user
+      MONGO_INITDB_ROOT_PASSWORD: root_mongo_password
           
-  grafana:
-   image: grafana/grafana-enterprise
-   container_name: grafana
-   restart: unless-stopped
-   ports:
-   - '8080:8080'
-   networks:
-     - MasterStock
-   volumes:
-     - .:/usr/app  
+  # Serviço admin do banco de dados
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root_mongo_user
+      ME_CONFIG_MONGODB_ADMINPASSWORD: root_mongo_password
+      ME_CONFIG_MONGODB_URL: mongodb://root_mongo_user:root_mongo_password@mongo:27017/
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: senha
+    depends_on:
+      - mongo
+
+  
+  # grafana:
+  #  image: grafana/grafana-enterprise
+  #  container_name: grafana
+  #  restart: unless-stopped
+  #  ports:
+  #  - '8080:8080'
+  #  networks:
+  #    - MasterStock
+  #  volumes:
+  #    - .:/usr/app  
