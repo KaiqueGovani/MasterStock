@@ -1,0 +1,38 @@
+.cabecalho {
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  padding: 1rem;
+  background-color: var(--color-gray-500);
+  border-radius: 0 0 1rem 1rem;
+}
+
+.menu {
+  height: 2rem;
+  width: 2.5rem;
+  position: absolute;
+  top: 1.95rem;
+  left: 1rem;
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--color-primary-500);
+}
+
+.nomePagina {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-primary-500);
+}
+
+.backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--color-black-500);
+  opacity: 50%;
+}

@@ -1,1 +1,41 @@
-<p>menu-lateral works!</p>
+<div class="menuLateral sombra">
+  <div class="cabecalho sombra">
+    <div class="infoUsuario">
+      <div class="fotoUsuario">
+        <img
+          class="sombra"
+          src="https://t3.ftcdn.net/jpg/05/16/27/58/360_F_516275801_f3Fsp17x6HQK0xQgDQEELoTuERO4SsWV.jpg"
+          alt="Foto do usuário"
+        />
+      </div>
+
+      <div class="nomeUsuario">
+        <p>Nome usuário</p>
+      </div>
+    </div>
+
+    <div class="funcoes">
+      <span class="icon material-symbols-outlined"> notifications </span>
+
+      <span class="icon material-symbols-outlined"> settings </span>
+    </div>
+  </div>
+
+  <div class="corpo">
+    <ng-container *ngFor="let itemMenu of itensMenu">
+      <div
+        class="itemMenu sombra"
+        [className]="
+          itemMenu.ativo ? 'itemMenu sombra ativo' : 'itemMenu sombra'
+        "
+        (click)="navegar(itemMenu.url)"
+      >
+        <span class="material-symbols-outlined">
+          {{ itemMenu.icon }}
+        </span>
+
+        <p>{{ itemMenu.nome }}</p>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,1 +1,13 @@
-<p>cabecalho works!</p>
+<div class="cabecalho sombra">
+  <span (click)="toggleMenuLateral()" class="menu material-symbols-outlined">
+    menu
+  </span>
+
+  <p class="nomePagina">{{ nomePagina }}</p>
+</div>
+
+<ng-container *ngIf="menuLateralAtivo">
+  <div (click)="toggleMenuLateral()" class="backdrop"></div>
+
+  <app-menu-lateral></app-menu-lateral>
+</ng-container>

@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
+import { CabecalhoComponent } from '../../componentes/cabecalho/cabecalho.component';
 
 @Component({
   selector: 'app-produtos',
   standalone: true,
-  imports: [],
   templateUrl: './produtos.component.html',
-  styleUrl: './produtos.component.css'
+  styleUrl: './produtos.component.css',
+  imports: [CabecalhoComponent],
 })
-export class ProdutosComponent {
-
-}
+export class ProdutosComponent {}

@@ -1,0 +1,88 @@
+.menuLateral {
+  height: 100vh;
+  width: 85%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--color-gray-500);
+  border-radius: 0 1rem 1rem 0;
+  border: 1.5px solid var(--color-primary-200);
+  overflow: hidden;
+}
+
+.cabecalho {
+  height: 24vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--color-white-500);
+  border-radius: 0 0 1rem 1rem;
+  padding: 1rem;
+}
+
+.infoUsuario {
+  height: 9.4rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.infoUsuario img {
+  height: 6rem;
+  width: 6rem;
+  border-radius: 100%;
+  object-fit: contain;
+  border: 2px solid var(--color-primary-700);
+}
+
+.infoUsuario p {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-primary-500);
+}
+
+.funcoes {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+
+.icon {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.corpo {
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+}
+
+.itemMenu {
+  height: 4rem;
+  width: 85%;
+  background-color: var(--color-gray-500);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.4rem;
+  border-radius: 0.6rem;
+  padding: 0 1rem;
+}
+
+.ativo {
+  background-color: var(--color-primary-500);
+  color: var(--color-white-500);
+}
+
+.itemMenu p {
+  width: 85%;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
