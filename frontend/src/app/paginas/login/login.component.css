@@ -1,0 +1,144 @@
+.login {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 10rem;
+}
+
+.cadastro {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  padding: 6rem;
+}
+
+.titulo h1 {
+  display: flex;
+  justify-content: center;
+  width: 20rem;
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--color-primary-500);
+  text-align: center;
+}
+
+form {
+  height: 18rem;
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.cadastro form {
+  height: 32rem;
+}
+
+form p {
+  color: var(--color-warning-500);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
+.item-form {
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-primary-500);
+}
+
+.item-form input,
+.modal input {
+  height: 3.4rem;
+  width: 100%;
+  border: none;
+  background-color: var(--color-gray-400);
+  border-radius: 0.3rem;
+  padding-left: 0.6rem;
+  color: var(--color-black-500);
+  font-size: 1rem;
+}
+
+.modal input {
+  width: 90%;
+  background-color: var(--color-white-500);
+}
+
+.item-form input::placeholder {
+  color: var(--color-black-500);
+  font-size: 1rem;
+}
+
+.item-form input:focus {
+  outline: 1px solid var(--color-warning-500);
+}
+
+.botao {
+  height: 8rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.botao button,
+.modal button {
+  height: 4rem;
+  width: 12rem;
+  background-color: var(--color-warning-500);
+  border-radius: 0.3rem;
+  border: none;
+  color: var(--color-white-500);
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.modal button {
+  height: 2rem;
+  width: 10rem;
+  font-size: 1rem;
+}
+
+.botao button:disabled {
+  background-color: var(--color-warning-300);
+}
+
+.botao-desc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.backdrop {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  background-color: var(--color-black-500);
+  opacity: 50%;
+}
+
+.modal {
+  height: 12rem;
+  width: 22rem;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--color-gray-400);
+  border-radius: 0.8rem;
+  padding: 0.4rem;
+}

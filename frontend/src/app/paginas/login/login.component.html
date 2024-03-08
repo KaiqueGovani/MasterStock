@@ -1,1 +1,123 @@
-<p>login works!</p>
+<ng-container *ngIf="isLogin">
+  <div class="login">
+    <div class="titulo">
+      <h1>Login</h1>
+    </div>
+    <form [formGroup]="loginForm">
+      <div class="item-form email">
+        <label for="email">E-mail</label>
+        <input
+          id="email"
+          placeholder="Insira seu e-mail"
+          class="sombra"
+          type="email"
+          formControlName="email"
+        />
+      </div>
+
+      <div class="item-form senha">
+        <label for="senha">Senha</label>
+        <input
+          id="senha"
+          formControlName="senha"
+          placeholder="Insira sua senha"
+          class="sombra"
+          type="password"
+        />
+      </div>
+
+      <p (click)="toggleEsqueceuSenha()">Esqueceu sua senha?</p>
+
+      <ng-container *ngIf="esqueceuSenha">
+        <div (click)="toggleEsqueceuSenha()" class="backdrop"></div>
+
+        <div class="modal sombra">
+          <h3>Esqueceu a senha?</h3>
+
+          <input class="sombra" placeholder="Insira seu e-mail" type="email" />
+
+          <button (click)="toggleEsqueceuSenha()" class="sombra">
+            Recuperar senha
+          </button>
+        </div>
+      </ng-container>
+    </form>
+    <div class="botao">
+      <button [disabled]="loginForm.invalid" (click)="enviar()" class="sombra">
+        Entrar
+      </button>
+
+      <div class="botao-desc">
+        <p>Ainda não tem uma conta?</p>
+        <p class="amarelo" (click)="isLogin = !isLogin">Crie agora!</p>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="!isLogin">
+  <div class="cadastro">
+    <div class="titulo titulo-cadastre-se">
+      <h1>Cadastre-se</h1>
+    </div>
+    <form [formGroup]="cadastroForm">
+      <div class="item-form">
+        <label for="nome">Nome</label>
+        <input
+          id="nome"
+          formControlName="nome"
+          placeholder="Insira seu nome"
+          class="sombra"
+          type="email"
+        />
+      </div>
+
+      <div class="item-form email">
+        <label for="email">E-mail</label>
+        <input
+          placeholder="Insira seu e-mail"
+          id="email"
+          formControlName="email"
+          class="sombra"
+          type="email"
+        />
+      </div>
+
+      <div class="item-form senha">
+        <label for="senha">Senha</label>
+        <input
+          id="senha"
+          formControlName="senha"
+          placeholder="Insira sua senha"
+          class="sombra"
+          type="password"
+        />
+      </div>
+
+      <div class="item-form senha">
+        <label for="senha-confirm">Confirme sua senha</label>
+        <input
+          id="confirmSenha"
+          formControlName="confirmSenha"
+          placeholder="Confirme sua senha"
+          class="sombra"
+          type="password"
+        />
+      </div>
+    </form>
+    <div class="botao">
+      <button
+        [disabled]="cadastroForm.invalid"
+        (click)="enviar()"
+        class="sombra"
+      >
+        Cadastrar
+      </button>
+
+      <div class="botao-desc">
+        <p>Já tem uma conta?</p>
+        <p class="amarelo" (click)="isLogin = !isLogin">Entre agora!</p>
+      </div>
+    </div>
+  </div>
+</ng-container>
