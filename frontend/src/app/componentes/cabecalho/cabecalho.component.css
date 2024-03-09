@@ -8,6 +8,7 @@
   padding: 1rem;
   background-color: var(--color-gray-500);
   border-radius: 0 0 1rem 1rem;
+  z-index: 90;
 }
 
 .menu {
@@ -35,4 +36,5 @@
   width: 100vw;
   background-color: var(--color-black-500);
   opacity: 50%;
+  z-index: 99;
 }

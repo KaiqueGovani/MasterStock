@@ -1,0 +1,94 @@
+.descricaoProduto {
+  position: relative;
+  top: -0.65rem;
+  height: 90%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--color-gray-500);
+}
+
+.img img {
+  height: 22rem;
+  width: 22rem;
+  border-radius: 100%;
+  margin-top: 2rem;
+}
+
+.legenda {
+  position: relative;
+  bottom: -0.65rem;
+  height: 26rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  background-color: var(--color-primary-500);
+  color: var(--color-white-500);
+  border-radius: 1rem 1rem 0 0;
+}
+
+.info {
+  height: 75%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.botoes {
+  height: 15%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.botoes button {
+  height: 100%;
+  width: 9.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.6rem;
+  border: none;
+  outline: none;
+}
+
+.icon {
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--color-white-500);
+}
+
+.editar {
+  background-color: var(--color-warning-600);
+}
+
+.adicionar {
+  background-color: var(--color-success-500);
+}
+
+.deletar {
+  background-color: var(--color-danger-500);
+}
+
+.emFalta {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 3rem;
+  background-color: var(--color-warning-500);
+  color: var(--color-white-500);
+  font-size: 2rem;
+  font-weight: 600;
+  border-radius: 100%;
+}

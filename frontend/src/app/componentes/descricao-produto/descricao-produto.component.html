@@ -1,1 +1,43 @@
-<p>descricao-produto works!</p>
+<app-cabecalho [nomePagina]="produto.nome"></app-cabecalho>
+
+<div class="descricaoProduto">
+  <ng-container *ngIf="estaEmFalta()">
+    <div class="emFalta sombra">!</div>
+  </ng-container>
+
+  <div class="img">
+    <img [src]="produto.urlImagem" alt="" />
+  </div>
+
+  <div class="legenda sombra">
+    <div class="info">
+      <p>Descrição: {{ produto.descricao }}</p>
+
+      <p>Quantidade em estoque: {{ produto.quantidade }}</p>
+
+      <p>Quantidade desejada: {{ produto.desejado }}</p>
+
+      <p>
+        Comprado pela última vez: {{ getDataFormatada(produto.dataCompra) }}
+      </p>
+
+      <p>Vencimente: {{ getDataFormatada(produto.dataValidade) }}</p>
+
+      <p>Último preço pago: {{ produto.preco }}</p>
+    </div>
+
+    <div class="botoes">
+      <button class="editar sombra">
+        <span class="material-symbols-outlined icon"> edit </span>
+      </button>
+
+      <button class="adicionar sombra">
+        <span class="material-symbols-outlined icon"> add </span>
+      </button>
+
+      <button class="deletar sombra">
+        <span class="material-symbols-outlined icon"> delete </span>
+      </button>
+    </div>
+  </div>
+</div>

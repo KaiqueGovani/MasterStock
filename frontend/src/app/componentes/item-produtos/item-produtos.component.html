@@ -1,5 +1,5 @@
-<div class="item-produtos sombra">
-  <ng-container *ngIf="estaEmFalta(produto)">
+<div (click)="abrirDetalhe()" class="item-produtos sombra">
+  <ng-container *ngIf="estaEmFalta()">
     <div class="emFalta sombra">!</div>
   </ng-container>
 

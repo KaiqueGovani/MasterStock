@@ -8,6 +8,7 @@
   border-radius: 0 1rem 1rem 0;
   border: 1.5px solid var(--color-primary-200);
   overflow: hidden;
+  z-index: 99;
 }
 
 .cabecalho {
