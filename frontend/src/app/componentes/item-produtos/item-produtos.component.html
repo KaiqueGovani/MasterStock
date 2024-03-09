@@ -1,1 +1,15 @@
-<p>item-produtos works!</p>
+<div class="item-produtos sombra">
+  <ng-container *ngIf="estaEmFalta(produto)">
+    <div class="emFalta sombra">!</div>
+  </ng-container>
+
+  <div class="img">
+    <img [src]="produto.urlImagem" alt="" />
+  </div>
+
+  <div class="legenda">
+    <p>Desejado: {{ produto.desejado }}</p>
+
+    <p>Estoque: {{ produto.quantidade }}</p>
+  </div>
+</div>

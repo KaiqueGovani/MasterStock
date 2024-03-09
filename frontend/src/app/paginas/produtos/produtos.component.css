@@ -1,0 +1,9 @@
+.produtos {
+  height: 0;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}

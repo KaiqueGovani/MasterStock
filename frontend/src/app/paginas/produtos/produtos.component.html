@@ -1,1 +1,7 @@
 <app-cabecalho nomePagina="Produtos"></app-cabecalho>
+
+<div class="produtos">
+  <ng-container *ngFor="let produto of produtos">
+    <app-item-produtos [produto]="produto"></app-item-produtos>
+  </ng-container>
+</div>

@@ -1,0 +1,50 @@
+.item-produtos {
+  position: relative;
+  height: 13rem;
+  width: 13rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  background-color: var(--color-gray-500);
+  border-radius: 1rem;
+  z-index: -1;
+}
+
+.img img {
+  height: 8rem;
+  width: 8rem;
+  margin-top: 1rem;
+  border-radius: 100%;
+}
+
+.legenda {
+  height: 3rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: var(--color-primary-500);
+  color: var(--color-white-500);
+  border-radius: 0 0 1rem 1rem;
+  font-size: 0.8rem;
+  font-weight: 300;
+}
+
+.emFalta {
+  position: absolute;
+  top: -1rem;
+  right: -1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
+  background-color: var(--color-warning-500);
+  color: var(--color-white-500);
+  font-size: 1.4rem;
+  font-weight: 600;
+  border-radius: 100%;
+}
