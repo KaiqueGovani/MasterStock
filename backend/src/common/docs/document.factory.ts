@@ -12,7 +12,6 @@ export class DocumentFactory {
             .setTitle('MasterStock API')
             .setDescription('The MasterStock API reference documentation')
             .setVersion('1.0')
-            .addTag('products')
             .build();
     }
 }
