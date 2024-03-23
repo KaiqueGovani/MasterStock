@@ -1,6 +1,6 @@
 import { Controller, Get } from '@nestjs/common';
 import { AppService } from './app.service';
-import { ApiExcludeController, ApiHideProperty } from '@nestjs/swagger';
+import { ApiExcludeController, ApiHideProperty, ApiResponse } from '@nestjs/swagger';
 
 @ApiExcludeController()
 @Controller()
