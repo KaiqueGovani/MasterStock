@@ -1,9 +1,15 @@
 <app-cabecalho [nomePagina]="produto.nome"></app-cabecalho>
 
 <div class="descricaoProduto">
-  <ng-container *ngIf="estaEmFalta()">
-    <div class="emFalta sombra">!</div>
-  </ng-container>
+  <div class="icons">
+    <div (click)="voltar()">
+      <span class="voltar material-symbols-outlined"> arrow_back_ios </span>
+    </div>
+
+    <ng-container *ngIf="estaEmFalta()">
+      <div class="emFalta sombra">!</div>
+    </ng-container>
+  </div>
 
   <div class="img">
     <img [src]="produto.urlImagem" alt="" />
@@ -27,17 +33,17 @@
     </div>
 
     <div class="botoes">
-      <button class="editar sombra">
-        <span class="material-symbols-outlined icon"> edit </span>
-      </button>
-
-      <button class="adicionar sombra">
-        <span class="material-symbols-outlined icon"> add </span>
-      </button>
-
-      <button class="deletar sombra">
-        <span class="material-symbols-outlined icon"> delete </span>
-      </button>
+      <ng-container *ngFor="let opcao of opcoes">
+        <button
+          [className]="opcao.nome"
+          class="sombra"
+          (click)="realizarAcao(opcao.nome)"
+        >
+          <span class="material-symbols-outlined icon">
+            {{ opcao.icone }}
+          </span>
+        </button>
+      </ng-container>
     </div>
   </div>
 </div>

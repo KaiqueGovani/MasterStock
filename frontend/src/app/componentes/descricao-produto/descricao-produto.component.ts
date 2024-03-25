@@ -4,6 +4,9 @@ import { Produto } from '../../models/produto.model';
 import { ProdutoService } from '../../services/produto.service';
 import { CabecalhoComponent } from '../cabecalho/cabecalho.component';
 import { CommonModule, DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
+import { OpcaoProduto } from '../../models/opcaoProduto.model';
+import { OpcaoProdutoEnum } from '../../enum/opcaoProduto.enum';
 
 @Component({
   selector: 'app-descricao-produto',
@@ -14,19 +17,33 @@ import { CommonModule, DatePipe } from '@angular/common';
 })
 export class DescricaoProdutoComponent {
   public produto: Produto = {
-    id: 1,
-    nome: 'Coca-cola',
-    quantidade: 2,
-    desejado: 5,
-    preco: 7.99,
-    descricao: '2 litros',
+    id: 0,
+    nome: '',
+    quantidade: 0,
+    desejado: 0,
+    preco: 0,
+    descricao: '',
     dataCompra: new Date(),
     dataValidade: new Date(),
-    urlImagem:
-      'https://loja.supermerclick.com.br/image/cache/catalog/produtos-integracao/003851-omie___coca-ls-1litro__conv-1000x1000.jpg',
+    urlImagem: '',
   };
 
-  constructor(public produtoService: ProdutoService) {
+  public opcoes: OpcaoProduto[] = [
+    {
+      nome: OpcaoProdutoEnum.editar,
+      icone: 'edit',
+    },
+    {
+      nome: OpcaoProdutoEnum.adicionar,
+      icone: 'add',
+    },
+    {
+      nome: OpcaoProdutoEnum.deletar,
+      icone: 'delete',
+    },
+  ];
+
+  constructor(public produtoService: ProdutoService, public router: Router) {
     this.produto = this.produtoService.pegarProduto();
   }
 
@@ -40,5 +57,13 @@ export class DescricaoProdutoComponent {
     const ano = data.getFullYear().toString().slice(2);
 
     return `${dia}/${mes}/${ano}`;
+  }
+
+  public voltar(): void {
+    this.router.navigateByUrl('/produtos');
+  }
+
+  public realizarAcao(acao: string): void {
+    console.log(acao);
   }
 }
