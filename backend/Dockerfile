@@ -9,4 +9,4 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 COPY . .
-CMD [ "npm", "run", "start:debug" ]
+CMD [ "npm", "run", "start:dev" ]
