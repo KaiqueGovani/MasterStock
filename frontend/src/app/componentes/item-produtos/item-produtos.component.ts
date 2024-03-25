@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { Produto } from '../../models/produto.model';
 import { CommonModule } from '@angular/common';
 import { ProdutoService } from '../../services/produto.service';
+import { PaginaEnum } from '../../enum/pagina.enum';
 
 @Component({
   selector: 'app-item-produtos',
@@ -24,6 +25,9 @@ export class ItemProdutosComponent {
     urlImagem: '',
   };
 
+  @Input()
+  public pagina: PaginaEnum = PaginaEnum.produtos;
+
   constructor(public produtoService: ProdutoService) {}
 
   public estaEmFalta(): boolean {
@@ -31,6 +35,6 @@ export class ItemProdutosComponent {
   }
 
   public abrirDetalhe(): void {
-    this.produtoService.abrirDetalhe(this.produto);
+    this.produtoService.abrirDetalhe(this.produto, this.pagina);
   }
 }

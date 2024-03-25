@@ -2,6 +2,10 @@
 
 <div class="produtos">
   <ng-container *ngFor="let produto of produtos">
-    <app-item-produtos [produto]="produto"></app-item-produtos>
+    <app-item-produtos
+      [pagina]="pagina"
+      class="produto"
+      [produto]="produto"
+    ></app-item-produtos>
   </ng-container>
 </div>

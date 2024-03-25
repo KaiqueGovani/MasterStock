@@ -1,3 +1,12 @@
 <app-cabecalho [nomePagina]="'Dashboard'"></app-cabecalho>
 
-<p>dashboard works!</p>
+<div class="dashboard">
+  <div class="itensDestaque">
+    <ng-container *ngFor="let produto of produtos">
+      <app-item-produtos
+        [pagina]="pagina"
+        [produto]="produto"
+      ></app-item-produtos>
+    </ng-container>
+  </div>
+</div>

@@ -8,3 +8,7 @@
   align-items: center;
   cursor: pointer;
 }
+
+.produto {
+  margin-bottom: 2rem;
+}

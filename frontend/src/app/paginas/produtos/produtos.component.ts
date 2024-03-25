@@ -3,6 +3,7 @@ import { CabecalhoComponent } from '../../componentes/cabecalho/cabecalho.compon
 import { ItemProdutosComponent } from '../../componentes/item-produtos/item-produtos.component';
 import { Produto } from '../../models/produto.model';
 import { CommonModule } from '@angular/common';
+import { PaginaEnum } from '../../enum/pagina.enum';
 
 @Component({
   selector: 'app-produtos',
@@ -62,4 +63,6 @@ export class ProdutosComponent {
         'https://loja.supermerclick.com.br/image/cache/catalog/produtos-integracao/003851-omie___coca-ls-1litro__conv-1000x1000.jpg',
     },
   ];
+
+  public pagina: PaginaEnum = PaginaEnum.produtos;
 }

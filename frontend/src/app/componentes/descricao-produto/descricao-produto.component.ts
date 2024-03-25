@@ -7,6 +7,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { OpcaoProduto } from '../../models/opcaoProduto.model';
 import { OpcaoProdutoEnum } from '../../enum/opcaoProduto.enum';
+import { PaginaEnum } from '../../enum/pagina.enum';
 
 @Component({
   selector: 'app-descricao-produto',
@@ -28,6 +29,8 @@ export class DescricaoProdutoComponent {
     urlImagem: '',
   };
 
+  public pagina: PaginaEnum = PaginaEnum.produtos;
+
   public opcoes: OpcaoProduto[] = [
     {
       nome: OpcaoProdutoEnum.editar,
@@ -45,6 +48,7 @@ export class DescricaoProdutoComponent {
 
   constructor(public produtoService: ProdutoService, public router: Router) {
     this.produto = this.produtoService.pegarProduto();
+    this.pagina = this.produtoService.pegarPagina();
   }
 
   public estaEmFalta(): boolean {
@@ -60,7 +64,7 @@ export class DescricaoProdutoComponent {
   }
 
   public voltar(): void {
-    this.router.navigateByUrl('/produtos');
+    this.router.navigateByUrl(`/${this.pagina}`);
   }
 
   public realizarAcao(acao: string): void {

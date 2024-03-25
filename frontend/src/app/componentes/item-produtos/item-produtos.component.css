@@ -6,7 +6,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2rem;
   background-color: var(--color-gray-500);
   border-radius: 1rem;
   z-index: 0;

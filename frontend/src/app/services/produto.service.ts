@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Produto } from '../models/produto.model';
 import { Router } from '@angular/router';
+import { PaginaEnum } from '../enum/pagina.enum';
 
 @Injectable({
   providedIn: 'root',
@@ -18,16 +19,23 @@ export class ProdutoService {
     urlImagem: '',
   };
 
+  public pagina: PaginaEnum = PaginaEnum.produtos;
+
   constructor(public router: Router) {}
 
-  public abrirDetalhe(produto: Produto): void {
+  public abrirDetalhe(produto: Produto, pagina: PaginaEnum): void {
     this.produtoEscolhido = produto;
+    this.pagina = pagina;
 
     this.router.navigateByUrl('/produto-detalhe');
   }
 
   public pegarProduto(): Produto {
     return this.produtoEscolhido;
+  }
+
+  public pegarPagina(): PaginaEnum {
+    return this.pagina;
   }
 
   public estaEmFalta(produto: Produto): boolean {
