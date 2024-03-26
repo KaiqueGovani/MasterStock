@@ -1,4 +1,4 @@
-import { Body, ConflictException, Controller, HttpCode, Post } from '@nestjs/common';
+import { BadRequestException, Body, ConflictException, Controller, HttpCode, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { RegisterDto } from './dto/register.dto';
 import {
@@ -24,11 +24,12 @@ export class UsersController {
   ) {}
 
   @Post('register')
-  @ApiCreatedResponse({ description: 'Usuário criado como sucesso!' })
+  @ApiCreatedResponse({ description: 'Usuário criado com sucesso!' })
   @ApiConflictResponse({ description: 'Usuário com esse email / telefone já existe!' })
   async register(@Body() registerDto: RegisterDto) {
     try {
-      return await this.usersService.register(registerDto);
+      const user = await this.usersService.register(registerDto);
+      return { user, message: 'Usuário criado com sucesso!' };
     } catch (error) {
       if (error instanceof ConflictException) throw error;
       console.error(error);
@@ -43,9 +44,10 @@ export class UsersController {
   @HttpCode(200)
   async login(@Body() loginDto: LoginDto) {
     try {
-      return await this.usersService.login(loginDto);
+      return { ...(await this.usersService.login(loginDto)), message: 'Usuário logado com sucesso!' };
     } catch (error) {
       if (error instanceof ConflictException) throw error;
+      if (error instanceof BadRequestException) throw error;
       console.error(error);
       throw new OperationException();
     }

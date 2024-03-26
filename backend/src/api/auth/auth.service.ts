@@ -8,8 +8,11 @@ export class AuthService {
   constructor(private jwtService: JwtService) {}
 
   async generateJwtToken(user: GenerateJwtTokenDto) {
-    user;
     return await this.jwtService.signAsync({ user });
+  }
+
+  async verifyJwtToken(token: string): Promise<object> {
+    return await this.jwtService.verifyAsync(token);
   }
 
   async comparePassword(password: string, hash: string): Promise<boolean> {

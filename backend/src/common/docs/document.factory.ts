@@ -9,6 +9,7 @@ export class DocumentFactory {
 
   private static getDocumentConfig() {
     return new DocumentBuilder()
+      .addBearerAuth()
       .setTitle('MasterStock API')
       .setDescription('The MasterStock API reference documentation')
       .setVersion('1.0')
