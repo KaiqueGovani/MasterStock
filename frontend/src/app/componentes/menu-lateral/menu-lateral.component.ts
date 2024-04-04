@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ItemMenu } from '../../models/itensMenu.model';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -32,12 +33,16 @@ export class MenuLateralComponent {
     },
   ];
 
-  constructor(public router: Router) {
+  constructor(private router: Router, private loginService: LoginService) {
     this.verificaAtivo();
   }
 
   public navegar(url: string): void {
     this.router.navigateByUrl(url);
+  }
+
+  public sair(): void {
+    this.loginService.onLogout();
   }
 
   private verificaAtivo(): void {

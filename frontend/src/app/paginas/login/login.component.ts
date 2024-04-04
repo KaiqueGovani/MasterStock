@@ -11,6 +11,8 @@ import {
   ValidationErrors,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from '../../services/login.service';
+import { Login } from '../../models/login.model';
 
 @Component({
   selector: 'app-login',
@@ -26,7 +28,7 @@ export class LoginComponent {
   public loginForm: FormGroup;
   public cadastroForm: FormGroup;
 
-  constructor(public router: Router) {
+  constructor(private router: Router, private loginService: LoginService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       senha: new FormControl('', [
@@ -60,8 +62,12 @@ export class LoginComponent {
 
   public enviar(): void {
     if (this.isLogin) {
-      this.router.navigateByUrl('/dashboard');
-      // Implementar requisição para entrar na conta
+      const login: Login = {
+        email: this.loginForm.value.email,
+        senha: this.loginForm.value.senha,
+      };
+
+      this.loginService.onLogin(login);
     } else {
       // Implementar requisição para criar uma conta
     }

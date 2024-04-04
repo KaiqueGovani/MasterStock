@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 
 services:
   # Serviço de frontend
@@ -14,7 +14,8 @@ services:
       - node
       - mongo
       - mongo-express
-  
+    command: ng serve --host 0.0.0.0 --poll 2000
+
   # Serviço de backend
   node:
     container_name: node
@@ -28,6 +29,7 @@ services:
       - .env
     depends_on:
       - mongo
+    command: nest start --debug 0.0.0.0 --watch
 
   # Serviço de banco de dados
   mongo:
@@ -41,7 +43,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
-          
+
   # Serviço admin do banco de dados
   mongo-express:
     container_name: mongo-express
@@ -58,7 +60,6 @@ services:
     depends_on:
       - mongo
 
-  
   # grafana:
   #  image: grafana/grafana-enterprise
   #  container_name: grafana
@@ -68,4 +69,4 @@ services:
   #  networks:
   #    - MasterStock
   #  volumes:
-  #    - .:/usr/app  
+  #    - .:/usr/app

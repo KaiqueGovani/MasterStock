@@ -9,6 +9,8 @@ async function bootstrap() {
   // Instantiate Swagger app
   DocumentFactory.create(app);
 
+  app.enableCors();
+
   await app.listen(3000);
 }
 bootstrap();
