@@ -13,12 +13,10 @@ export class LoginService {
 
   constructor(private router: Router, private http: HttpClient) {}
 
-  private readonly path: string = 'http://localhost:3000/users/';
+  private readonly path: string = 'http://localhost:3000/users/login';
 
   public onLogin(login: Login): void {
-    const loginPath = this.path + 'login';
-
-    const response = this.http.post(loginPath, {
+    const response = this.http.post(this.path, {
       email: login.email,
       password: login.senha,
     });

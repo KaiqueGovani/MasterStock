@@ -47,7 +47,7 @@ export class DescricaoProdutoComponent {
   ];
 
   constructor(public produtoService: ProdutoService, public router: Router) {
-    this.produto = this.produtoService.pegarProduto();
+    this.produto = this.produtoService.pegarProdutoEscolhido();
     this.pagina = this.produtoService.pegarPagina();
   }
 
@@ -55,7 +55,9 @@ export class DescricaoProdutoComponent {
     return this.produtoService.estaEmFalta(this.produto);
   }
 
-  public getDataFormatada(data: Date): string {
+  public getDataFormatada(dataS: string): string {
+    const data = new Date(dataS);
+
     const dia = data.getDate().toString().padStart(2, '0');
     const mes = (data.getMonth() + 1).toString().padStart(2, '0');
     const ano = data.getFullYear().toString().slice(2);

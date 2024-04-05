@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Produto } from '../models/produto.model';
 import { Router } from '@angular/router';
 import { PaginaEnum } from '../enum/pagina.enum';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root',
 })
@@ -20,7 +22,13 @@ export class ProdutoService {
 
   public pagina: PaginaEnum = PaginaEnum.produtos;
 
-  constructor(private router: Router) {}
+  private readonly path: string = 'http://localhost:3000/products';
+
+  constructor(private router: Router, private http: HttpClient) {}
+
+  public pegarProdutos(): Observable<Produto[]> {
+    return this.http.get<Produto[]>(this.path);
+  }
 
   public abrirDetalhe(produto: Produto, pagina: PaginaEnum): void {
     this.produtoEscolhido = produto;
@@ -29,7 +37,7 @@ export class ProdutoService {
     this.router.navigateByUrl('/produto-detalhe');
   }
 
-  public pegarProduto(): Produto {
+  public pegarProdutoEscolhido(): Produto {
     return this.produtoEscolhido;
   }
 
