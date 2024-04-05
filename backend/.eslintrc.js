@@ -12,7 +12,7 @@ module.exports = {
   extends: [
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
-    'plugin:@typescript-eslint/recommended-type-checked'
+    'plugin:@typescript-eslint/recommended'
   ],
   root: true,
   env: {

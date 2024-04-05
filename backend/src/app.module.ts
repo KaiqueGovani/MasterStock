@@ -8,13 +8,7 @@ import { ProductsModule } from './api/products/products.module';
 import { UsersModule } from './api/users/users.module';
 
 @Module({
-  imports: [
-    ProductsModule,
-    ConfigModule.forRoot({ isGlobal: true }),
-    DatabaseModule,
-    AuthModule,
-    UsersModule,
-  ],
+  imports: [ProductsModule, ConfigModule.forRoot({ isGlobal: true }), DatabaseModule, AuthModule, UsersModule],
   controllers: [AppController],
   providers: [AppService],
 })
