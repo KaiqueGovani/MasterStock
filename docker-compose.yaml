@@ -10,10 +10,6 @@ services:
     volumes:
       - ./frontend:/frontend
       - /frontend/node_modules
-    depends_on:
-      - node
-      - mongo
-      - mongo-express
     command: ng serve --host 0.0.0.0 --poll 2000
 
   # Serviço de backend
@@ -27,15 +23,23 @@ services:
       - /backend/node_modules
     env_file:
       - .env
-    depends_on:
-      - mongo
     command: nest start --debug 0.0.0.0 --watch
+
+  # Serviço do bot de web scraping
+  bot:
+    container_name: bot
+    build: bot
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./bot/app.py:/app/app.py
+      - ./bot/webScraping.py:/app/webScraping.py
+    command: flask run --host=0.0.0.0 --debug
 
   # Serviço de banco de dados
   mongo:
     container_name: mongo
     image: mongo
-    restart: always
     ports:
       - 27017:27017
     volumes:
@@ -48,7 +52,6 @@ services:
   mongo-express:
     container_name: mongo-express
     image: mongo-express
-    restart: always
     ports:
       - 8081:8081
     environment:
@@ -57,8 +60,6 @@ services:
       ME_CONFIG_MONGODB_URL: mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongo/
       ME_CONFIG_BASICAUTH_USERNAME: ${ME_USER}
       ME_CONFIG_BASICAUTH_PASSWORD: ${ME_PASSWORD}
-    depends_on:
-      - mongo
 
   # grafana:
   #  image: grafana/grafana-enterprise
