@@ -10,7 +10,7 @@ services:
     volumes:
       - ./frontend:/frontend
       - /frontend/node_modules
-    command: ng serve --host 0.0.0.0 --poll 2000
+    command: ng serve --proxy-config proxy.conf.json --host 0.0.0.0 --poll 2000
 
   # Serviço de backend
   node:
