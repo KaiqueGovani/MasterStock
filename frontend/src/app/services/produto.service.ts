@@ -22,7 +22,7 @@ export class ProdutoService {
 
   public pagina: PaginaEnum = PaginaEnum.produtos;
 
-  private readonly path: string = 'http://localhost:3000/products';
+  private readonly path: string = 'api/products';
 
   constructor(private router: Router, private http: HttpClient) {}
 

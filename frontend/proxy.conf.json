@@ -1,0 +1,9 @@
+{
+  "/api/**": {
+    "target": "http://node:3000",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug",
+    "pathRewrite": { "^/api": "" }
+  }
+}
