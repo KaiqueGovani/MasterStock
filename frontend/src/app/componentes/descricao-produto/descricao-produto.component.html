@@ -24,10 +24,11 @@
       <p>Quantidade desejada: {{ produto.desejado }}</p>
 
       <p>
-        Comprado pela última vez: {{ getDataFormatada(produto.dataCompra) }}
+        Comprado pela última vez:
+        {{ getDataFormatada(produto.dataCompra.toString()) }}
       </p>
 
-      <p>Vencimente: {{ getDataFormatada(produto.dataValidade) }}</p>
+      <p>Vencimente: {{ getDataFormatada(produto.dataValidade.toString()) }}</p>
 
       <p>Último preço pago: {{ produto.preco }}</p>
     </div>
