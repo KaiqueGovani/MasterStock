@@ -19,8 +19,8 @@ export class DashboardComponent {
   public pagina: PaginaEnum = PaginaEnum.dashboard;
 
   constructor(private produtoService: ProdutoService) {
-    this.produtoService.pegarProdutos().subscribe((res: any) => {
-      this.produtos = res;
+    this.produtoService.pegarProdutos().then((produtos: Produto[]) => {
+      this.produtos = produtos;
     });
   }
 }

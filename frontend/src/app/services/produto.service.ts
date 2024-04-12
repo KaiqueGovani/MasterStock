@@ -3,31 +3,36 @@ import { Produto } from '../models/produto.model';
 import { Router } from '@angular/router';
 import { PaginaEnum } from '../enum/pagina.enum';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { ProdutosBot } from '../models/produtosBot.model';
+import { ProdutoBot } from '../models/produtoBot.model';
+import { PRODUTOS_PATH } from './services.const';
+import axiosInstance from '../interceptors/axios.interceptor';
 @Injectable({
   providedIn: 'root',
 })
 export class ProdutoService {
-  public produtoEscolhido: Produto = {
-    id: 0,
-    nome: '',
-    quantidade: 0,
-    desejado: 0,
-    preco: 0,
-    descricao: '',
-    dataCompra: new Date(),
-    dataValidade: new Date(),
-    urlImagem: '',
-  };
+  public produtoEscolhido!: Produto;
 
   public pagina: PaginaEnum = PaginaEnum.produtos;
 
-  private readonly path: string = 'api/products';
-
   constructor(private router: Router, private http: HttpClient) {}
 
-  public pegarProdutos(): Observable<Produto[]> {
-    return this.http.get<Produto[]>(this.path);
+  public verificarProdutos(response: ProdutosBot): void {
+    const produtos = response.produtos;
+
+    produtos.forEach((produto: ProdutoBot) => console.log(produto));
+  }
+
+  public pegarProdutos(): Promise<Produto[]> {
+    return axiosInstance
+      .get(PRODUTOS_PATH)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        throw err;
+      });
   }
 
   public abrirDetalhe(produto: Produto, pagina: PaginaEnum): void {

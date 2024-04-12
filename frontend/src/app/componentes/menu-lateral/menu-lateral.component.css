@@ -79,6 +79,11 @@
   cursor: pointer;
 }
 
+.itemMenu .escanear {
+  background-color: var(--color-danger-500);
+  color: var(--color-white-500);
+}
+
 .ativo {
   background-color: var(--color-primary-500);
   color: var(--color-white-500);

@@ -5,12 +5,18 @@ import { ListaDeComprasComponent } from './paginas/lista-de-compras/lista-de-com
 import { ProdutosComponent } from './paginas/produtos/produtos.component';
 import { DescricaoProdutoComponent } from './componentes/descricao-produto/descricao-produto.component';
 import { authGuard } from './guards/auth.guard';
+import { EscanearComponent } from './componentes/escanear/escanear.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'escanear',
+    component: EscanearComponent,
     canActivate: [authGuard],
   },
   {
@@ -24,6 +30,6 @@ export const routes: Routes = [
     component: DescricaoProdutoComponent,
     canActivate: [authGuard],
   },
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: '**', redirectTo: '/login', pathMatch: 'full' },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '**', redirectTo: '/dashboard', pathMatch: 'full' },
 ];

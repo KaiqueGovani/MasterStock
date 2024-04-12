@@ -27,6 +27,7 @@
     <ng-container *ngFor="let itemMenu of itensMenu">
       <div
         class="itemMenu sombra"
+        [className]="itemMenu.classe"
         [className]="
           itemMenu.ativo ? 'itemMenu sombra ativo' : 'itemMenu sombra'
         "
