@@ -1,23 +1,35 @@
-import { Controller, Headers, Post, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Controller, Get, Headers, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { ApiAcceptedResponse, ApiBearerAuth, ApiForbiddenResponse, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBadRequestResponse,
+  ApiBearerAuth,
+  ApiOkResponse,
+  ApiResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
+import { JsonWebTokenError } from '@nestjs/jwt';
+import { OperationException } from 'src/common/error/operation.exception';
 
 @ApiTags('users')
+@ApiResponse({ status: 500, description: 'Erro ao realizar operação!' })
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @ApiBearerAuth()
-  @ApiAcceptedResponse({ description: 'Token é valido!' })
-  @ApiForbiddenResponse({ description: 'Token inválido!' })
-  @Post('verify-jwt-token')
+  @ApiOkResponse({ description: 'Token é valido!' })
+  @ApiBadRequestResponse({ description: 'Token não foi aceito!' })
+  @ApiUnauthorizedResponse({ description: 'Token inválido!' })
+  @Get('verify-jwt-token')
   async verifyJwtToken(@Headers('authorization') token: string): Promise<any> {
-    let payload: object;
     try {
-      payload = await this.authService.verifyJwtToken(this.extractTokenFromHeader(token));
+      const payload = await this.authService.verifyJwtToken(this.extractTokenFromHeader(token));
       return { user: payload['user'], message: payload ? 'Token é valido!' : 'Token inválido!' };
-    } catch {
-      throw new UnauthorizedException('Token inválido!');
+    } catch (error) {
+      if (error instanceof TypeError) throw new BadRequestException('Token não foi aceito!');
+      if (error instanceof JsonWebTokenError) throw new UnauthorizedException('Token inválido!');
+      throw new OperationException();
     }
   }
 
