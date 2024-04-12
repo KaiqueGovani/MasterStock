@@ -1,45 +1,60 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Login } from '../models/login.model';
 import { Router } from '@angular/router';
 import { PaginaEnum } from '../enum/pagina.enum';
 import { Token } from '../models/token.model';
+import axiosInstance from '../interceptors/axios.interceptor';
+import { AUTH_PATH, LOGIN_PATH, TOKEN_KEY } from './services.const';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
-  private readonly token_key: string = 'access_token';
-  private readonly login_path: string = 'api/users/login';
-  private readonly auth_path: string = 'api/auth/verify-jwt-token';
-
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router) {}
 
   public onLogin(login: Login): void {
-    const response = this.http.post(this.login_path, {
-      email: login.email,
-      password: login.senha,
-    });
+    axiosInstance
+      .post(LOGIN_PATH, {
+        email: login.email,
+        password: login.senha,
+      })
+      .then((res) => {
+        const token: Token = res.data;
+        localStorage.setItem(TOKEN_KEY, token.access_token);
 
-    response.subscribe((res: any) => {
-      const token: Token = res;
-      localStorage.setItem(this.token_key, token.access_token);
-
-      this.router.navigateByUrl(PaginaEnum.dashboard);
-    });
+        this.router.navigateByUrl(PaginaEnum.dashboard);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   public onLogout(): void {
-    localStorage.removeItem(this.token_key);
+    localStorage.removeItem(TOKEN_KEY);
     this.router.navigateByUrl(PaginaEnum.login);
   }
 
   public estaLogado(): boolean {
-    const token = !!localStorage.getItem(this.token_key);
+    const token = localStorage.getItem(TOKEN_KEY);
 
-    const response = this.http.post(this.auth_path, {
-      access_token: token,
-    });
+    if (!token) {
+      return false;
+    }
+
+    axiosInstance
+      .get(AUTH_PATH)
+      .then((res) => {
+        if (res.data && res.data.valid) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+      .catch((err) => {
+        console.error('Erro ao verificar o status de autenticação: ', err);
+        this.router.navigateByUrl(PaginaEnum.login);
+        return false;
+      });
 
     return true;
   }

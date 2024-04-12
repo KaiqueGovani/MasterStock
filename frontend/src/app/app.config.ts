@@ -1,13 +1,18 @@
 import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
+import axios from 'axios';
 
 import { routes } from './app.routes';
-import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { CustomInterceptor } from './interceptors/custom.interceptor';
+import { HttpClient } from '@angular/common/http';
+
+const axiosInstance = axios.create();
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes),
-    provideHttpClient(withInterceptors([CustomInterceptor])),
+    {
+      provide: HttpClient,
+      useValue: axiosInstance,
+    },
   ],
 };
