@@ -12,7 +12,7 @@ export const authGuard: CanActivateFn = (
   route: ActivatedRouteSnapshot,
   state: RouterStateSnapshot
 ): boolean => {
-  if (inject(LoginService).estaLogado) {
+  if (inject(LoginService).estaLogado()) {
     return true;
   } else {
     inject(Router).navigateByUrl(PaginaEnum.login);

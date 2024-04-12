@@ -9,31 +9,38 @@ import { Token } from '../models/token.model';
   providedIn: 'root',
 })
 export class LoginService {
-  public estaLogado: boolean = false;
+  private readonly token_key: string = 'access_token';
+  private readonly login_path: string = 'api/users/login';
+  private readonly auth_path: string = 'api/auth/verify-jwt-token';
 
   constructor(private router: Router, private http: HttpClient) {}
 
-  private readonly path: string = 'api/users/login';
-
   public onLogin(login: Login): void {
-    const response = this.http.post(this.path, {
+    const response = this.http.post(this.login_path, {
       email: login.email,
       password: login.senha,
     });
 
-    this.estaLogado = true;
-
     response.subscribe((res: any) => {
       const token: Token = res;
-      localStorage.setItem('access_token', token.access_token);
+      localStorage.setItem(this.token_key, token.access_token);
 
       this.router.navigateByUrl(PaginaEnum.dashboard);
     });
   }
 
   public onLogout(): void {
-    localStorage.removeItem('access_token');
+    localStorage.removeItem(this.token_key);
     this.router.navigateByUrl(PaginaEnum.login);
-    this.estaLogado = false;
+  }
+
+  public estaLogado(): boolean {
+    const token = !!localStorage.getItem(this.token_key);
+
+    const response = this.http.post(this.auth_path, {
+      access_token: token,
+    });
+
+    return true;
   }
 }
