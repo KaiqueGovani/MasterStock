@@ -3,4 +3,5 @@ export interface ItemMenu {
   icon: string;
   url: string;
   ativo: boolean;
+  classe?: string;
 }

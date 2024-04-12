@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { PaginaEnum } from '../enum/pagina.enum';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { ProdutosBot } from '../models/produtosBot.model';
+import { ProdutoBot } from '../models/produtoBot.model';
 @Injectable({
   providedIn: 'root',
 })
@@ -25,6 +27,12 @@ export class ProdutoService {
   private readonly path: string = 'api/products';
 
   constructor(private router: Router, private http: HttpClient) {}
+
+  verificarProdutos(response: ProdutosBot) {
+    const produtos = response.produtos;
+
+    produtos.forEach((produto: ProdutoBot) => console.log(produto));
+  }
 
   public pegarProdutos(): Observable<Produto[]> {
     return this.http.get<Produto[]>(this.path);

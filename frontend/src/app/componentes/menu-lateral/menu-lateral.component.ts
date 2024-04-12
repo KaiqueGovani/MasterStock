@@ -31,6 +31,13 @@ export class MenuLateralComponent {
       url: '/lista-de-compras',
       ativo: false,
     },
+    {
+      nome: 'Escanear!',
+      icon: 'qr_code',
+      url: '/escanear',
+      ativo: false,
+      classe: 'escanear',
+    },
   ];
 
   constructor(private router: Router, private loginService: LoginService) {
