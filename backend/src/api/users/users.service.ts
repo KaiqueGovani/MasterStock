@@ -32,17 +32,18 @@ export class UsersService {
 
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const { senha, ...result } = user;
+    console.log('User:', result);
 
     return { access_token: await this.authService.generateJwtToken(result) };
   }
 
   async findByEmail(email: string): Promise<User> {
-    const user = await this.userModel.findOne({ email: new RegExp(email, 'i') });
+    const user = (await this.userModel.findOne({ email: new RegExp(email, 'i') })).toObject();
     return user;
   }
 
   async findByPhone(phone: string): Promise<User> {
-    const user = await this.userModel.findOne({ telefone: new RegExp(phone, 'i') });
+    const user = (await this.userModel.findOne({ telefone: new RegExp(phone, 'i') })).toObject();
     return user;
   }
 }
