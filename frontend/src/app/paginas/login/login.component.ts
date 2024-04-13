@@ -13,6 +13,7 @@ import {
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
 import { Login } from '../../models/login.model';
+import { Cadastro } from '../../models/cadastro.model';
 
 @Component({
   selector: 'app-login',
@@ -28,36 +29,51 @@ export class LoginComponent {
   public loginForm: FormGroup;
   public cadastroForm: FormGroup;
 
+  public passo: 1 | 2 = 1;
+
   constructor(private router: Router, private loginService: LoginService) {
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       senha: new FormControl('', [
         Validators.required,
-        Validators.minLength(6),
+        Validators.minLength(4),
       ]),
     });
 
-    this.cadastroForm = new FormGroup(
-      {
+    this.cadastroForm = new FormGroup({
+      passo1: new FormGroup(
+        {
+          email: new FormControl('', [Validators.required, Validators.email]),
+          senha: new FormControl('', [
+            Validators.required,
+            Validators.minLength(4),
+          ]),
+          confirmSenha: new FormControl('', [Validators.required]),
+        },
+        { validators: this.verificaSenhas }
+      ),
+      passo2: new FormGroup({
         nome: new FormControl('', [
           Validators.required,
           Validators.minLength(3),
         ]),
-        email: new FormControl('', [Validators.required, Validators.email]),
-        senha: new FormControl('', [
+        endereco: new FormControl('', [Validators.required]),
+        telefone: new FormControl('', [
           Validators.required,
-          Validators.minLength(6),
+          Validators.maxLength(11),
         ]),
-        confirmSenha: new FormControl('', [Validators.required]),
-      },
-      { validators: this.verificaSenhas }
-    );
+      }),
+    });
   }
 
   private verificaSenhas(control: AbstractControl) {
     return control.get('senha')?.value === control.get('confirmSenha')?.value
       ? null
       : { mismatch: true };
+  }
+
+  public proximoPasso(): void {
+    this.passo += 1;
   }
 
   public enviar(): void {
@@ -69,7 +85,16 @@ export class LoginComponent {
 
       this.loginService.onLogin(login);
     } else {
-      // Implementar requisição para criar uma conta
+      const cadastro: Cadastro = {
+        nome: this.cadastroForm.value.passo2.nome,
+        email: this.cadastroForm.value.passo1.email,
+        senha: this.cadastroForm.value.passo1.senha,
+        telefone: this.cadastroForm.value.passo2.telefone,
+        endereco: this.cadastroForm.value.passo2.endereco,
+      };
+
+      this.loginService.onCadastro(cadastro);
+      this.isLogin = !this.isLogin;
     }
   }
 

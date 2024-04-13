@@ -4,7 +4,13 @@ import { Router } from '@angular/router';
 import { PaginaEnum } from '../enum/pagina.enum';
 import { Token } from '../models/token.model';
 import axiosInstance from '../interceptors/axios.interceptor';
-import { AUTH_PATH, LOGIN_PATH, TOKEN_KEY } from './services.const';
+import {
+  AUTH_PATH,
+  CADASTRO_PATH,
+  LOGIN_PATH,
+  TOKEN_KEY,
+} from './services.const';
+import { Cadastro } from '../models/cadastro.model';
 
 @Injectable({
   providedIn: 'root',
@@ -57,5 +63,22 @@ export class LoginService {
       });
 
     return true;
+  }
+
+  public onCadastro(cadastro: Cadastro): void {
+    axiosInstance
+      .post(CADASTRO_PATH, {
+        nome: cadastro.nome,
+        email: cadastro.email,
+        senha: cadastro.senha,
+        telefone: cadastro.telefone,
+        endereco: cadastro.endereco,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 }

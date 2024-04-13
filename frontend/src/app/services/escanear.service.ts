@@ -2,6 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ESCANEAR_PATH } from './services.const';
+import axiosInstance from '../interceptors/axios.interceptor';
+import { ProdutosBot } from '../models/produtosBot.model';
+import { AxiosResponse } from 'axios';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +12,15 @@ import { ESCANEAR_PATH } from './services.const';
 export class EscanearService {
   constructor(private http: HttpClient) {}
 
-  public escanear(qrcode: string): Observable<Object> {
-    return this.http.get(ESCANEAR_PATH + qrcode);
+  public async escanear(qrcode: string): Promise<ProdutosBot> {
+    try {
+      const data: AxiosResponse<ProdutosBot> = await axiosInstance.get(
+        ESCANEAR_PATH + qrcode
+      );
+
+      return data.data;
+    } catch (err) {
+      throw err;
+    }
   }
 }

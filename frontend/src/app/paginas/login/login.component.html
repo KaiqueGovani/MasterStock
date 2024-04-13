@@ -26,7 +26,9 @@
         />
       </div>
 
-      <p class="esqueceuSenha" (click)="toggleEsqueceuSenha()">Esqueceu sua senha?</p>
+      <p class="esqueceuSenha" (click)="toggleEsqueceuSenha()">
+        Esqueceu sua senha?
+      </p>
 
       <ng-container *ngIf="esqueceuSenha">
         <div (click)="toggleEsqueceuSenha()" class="backdrop"></div>
@@ -61,52 +63,87 @@
       <h1>Cadastre-se</h1>
     </div>
     <form [formGroup]="cadastroForm">
-      <div class="item-form">
-        <label for="nome">Nome</label>
-        <input
-          id="nome"
-          formControlName="nome"
-          placeholder="Insira seu nome"
-          class="sombra"
-          type="email"
-        />
-      </div>
+      <ng-container formGroupName="passo1" *ngIf="passo === 1">
+        <div class="item-form email">
+          <label for="email">E-mail</label>
+          <input
+            placeholder="Insira seu e-mail"
+            id="email"
+            formControlName="email"
+            class="sombra"
+            type="email"
+          />
+        </div>
 
-      <div class="item-form email">
-        <label for="email">E-mail</label>
-        <input
-          placeholder="Insira seu e-mail"
-          id="email"
-          formControlName="email"
-          class="sombra"
-          type="email"
-        />
-      </div>
+        <div class="item-form senha">
+          <label for="senha">Senha</label>
+          <input
+            id="senha"
+            formControlName="senha"
+            placeholder="Insira sua senha"
+            class="sombra"
+            type="password"
+          />
+        </div>
 
-      <div class="item-form senha">
-        <label for="senha">Senha</label>
-        <input
-          id="senha"
-          formControlName="senha"
-          placeholder="Insira sua senha"
-          class="sombra"
-          type="password"
-        />
-      </div>
+        <div class="item-form senha">
+          <label for="senha-confirm">Confirme sua senha</label>
+          <input
+            id="confirmSenha"
+            formControlName="confirmSenha"
+            placeholder="Confirme sua senha"
+            class="sombra"
+            type="password"
+          />
+        </div>
+      </ng-container>
 
-      <div class="item-form senha">
-        <label for="senha-confirm">Confirme sua senha</label>
-        <input
-          id="confirmSenha"
-          formControlName="confirmSenha"
-          placeholder="Confirme sua senha"
-          class="sombra"
-          type="password"
-        />
-      </div>
+      <ng-container formGroupName="passo2" *ngIf="passo === 2">
+        <div class="item-form">
+          <label for="nome">Nome</label>
+          <input
+            id="nome"
+            formControlName="nome"
+            placeholder="Insira seu nome"
+            class="sombra"
+          />
+        </div>
+
+        <div class="item-form">
+          <label for="endereco">Endereço</label>
+          <input
+            id="endereco"
+            formControlName="endereco"
+            placeholder="Insira seu endereço"
+            class="sombra"
+          />
+        </div>
+
+        <div class="item-form">
+          <label for="telefone">Telefone</label>
+          <input
+            id="telefone"
+            formControlName="telefone"
+            placeholder="Insira seu telefone"
+            class="sombra"
+            type="number"
+            maxlength="11"
+          />
+        </div>
+      </ng-container>
     </form>
     <div class="botao">
       <button
+        *ngIf="passo === 1"
+        (click)="proximoPasso()"
+        class="sombra"
+        [disabled]="cadastroForm.get('passo1')?.invalid"
+      >
+        Próximo
+      </button>
+
+      <button
+        *ngIf="passo === 2"
         [disabled]="cadastroForm.invalid"
         (click)="enviar()"
         class="sombra"

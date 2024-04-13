@@ -54,7 +54,7 @@ export class EscanearComponent implements AfterViewInit, OnDestroy {
     this.verificarFrame();
   }
 
-  private verificarFrame(): void {
+  private async verificarFrame(): Promise<void> {
     if (this.video.nativeElement) {
       const { clientWidth, clientHeight } = this.video.nativeElement;
 
@@ -85,9 +85,11 @@ export class EscanearComponent implements AfterViewInit, OnDestroy {
 
         console.log('QRCode lido. Aguardando resposta do bot...');
 
-        this.escanearService.escanear(qrcodeFormatado).subscribe((produtos) => {
-          this.produtoService.verificarProdutos(produtos as ProdutosBot);
-        });
+        const produtos: ProdutosBot = await this.escanearService.escanear(
+          qrcodeFormatado
+        );
+
+        this.produtoService.verificarProdutos(produtos as ProdutosBot);
       } else {
         timer(500)
           .pipe(takeUntil(this.destroy$))
