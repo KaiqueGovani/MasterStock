@@ -12,13 +12,15 @@ import { Subject, takeUntil, timer } from 'rxjs';
 import { EscanearService } from '../../services/escanear.service';
 import { ProdutoService } from '../../services/produto.service';
 import { ProdutosBot } from '../../models/produtosBot.model';
+import { LoaderComponent } from '../loader/loader.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-escanear',
   standalone: true,
   templateUrl: './escanear.component.html',
   styleUrl: './escanear.component.css',
-  imports: [CabecalhoComponent],
+  imports: [CabecalhoComponent, LoaderComponent, CommonModule],
 })
 export class EscanearComponent implements AfterViewInit, OnDestroy {
   @ViewChild('videoElement') video!: ElementRef<HTMLVideoElement>;
@@ -27,6 +29,8 @@ export class EscanearComponent implements AfterViewInit, OnDestroy {
   private videoStream!: MediaStream;
   private readonly config: MediaStreamConstraints =
     structuredClone(VIDEO_CONFIG);
+
+  public estaCarregando: boolean = false;
 
   private readonly destroy$ = new Subject<void>();
 
@@ -83,11 +87,13 @@ export class EscanearComponent implements AfterViewInit, OnDestroy {
       if (qrcode) {
         const qrcodeFormatado = qrcode.data.replace('?', '%3f');
 
-        console.log('QRCode lido. Aguardando resposta do bot...');
+        this.estaCarregando = true;
 
         const produtos: ProdutosBot = await this.escanearService.escanear(
           qrcodeFormatado
         );
+
+        this.estaCarregando = false;
 
         this.produtoService.verificarProdutos(produtos as ProdutosBot);
       } else {
