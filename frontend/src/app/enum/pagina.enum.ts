@@ -3,4 +3,5 @@ export enum PaginaEnum {
   produtos = 'produtos',
   listaDeCompras = 'lista-de-compras',
   login = 'login',
+  verificarProdutos = 'verificar-produtos',
 }

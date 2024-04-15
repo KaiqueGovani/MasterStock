@@ -1,0 +1,40 @@
+<app-cabecalho nomePagina="Verificar"></app-cabecalho>
+
+<div class="container">
+  <div class="legenda">
+    <p>Produto</p>
+    <p>Valor un.</p>
+    <p>Valor Total</p>
+    <p>Qtde.</p>
+  </div>
+
+  <div class="produtos">
+    <ng-container *ngFor="let produto of produtos">
+      <div (click)="abrirDetalhe(produto)" class="produto">
+        <p class="nome">{{ produto.nome | titlecase }}</p>
+
+        <p>R$ {{ produto.valor_unitario }}</p>
+
+        <p>R$ {{ produto.valor_total }}</p>
+
+        <div class="quantidade">
+          <button class="aumentar" (click)="aumentarQuantidade(produto)">
+            +
+          </button>
+
+          <p>{{ produto.quantidade }}</p>
+
+          <button class="diminuir" (click)="diminuirQuantidade(produto)">
+            -
+          </button>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="valor_total">
+      <p>Valor total: R$ {{ valorTotal }}</p>
+    </div>
+  </div>
+</div>
+
+<button (click)="confirmarProdutos()" class="confirmar">Confirmar</button>

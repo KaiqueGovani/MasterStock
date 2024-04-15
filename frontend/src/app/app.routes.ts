@@ -6,6 +6,8 @@ import { ProdutosComponent } from './paginas/produtos/produtos.component';
 import { DescricaoProdutoComponent } from './componentes/descricao-produto/descricao-produto.component';
 import { authGuard } from './guards/auth.guard';
 import { EscanearComponent } from './componentes/escanear/escanear.component';
+import { VerificarProdutosComponent } from './paginas/verificar-produtos/verificar-produtos.component';
+import { confirmandoGuard } from './guards/confirmando.guard';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -23,6 +25,11 @@ export const routes: Routes = [
     path: 'lista-de-compras',
     component: ListaDeComprasComponent,
     canActivate: [authGuard],
+  },
+  {
+    path: 'verificar-produtos',
+    component: VerificarProdutosComponent,
+    canActivate: [authGuard, confirmandoGuard],
   },
   { path: 'produtos', component: ProdutosComponent, canActivate: [authGuard] },
   {

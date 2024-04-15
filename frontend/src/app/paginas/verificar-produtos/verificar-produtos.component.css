@@ -1,0 +1,93 @@
+.container {
+  width: 100vw;
+  height: calc(100% - 6rem);
+  padding: 1.5rem;
+  overflow: scroll;
+}
+
+.legenda {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 1.15rem;
+  font-weight: 600;
+  padding-right: 1.5rem;
+}
+
+.legenda > :first-child {
+  width: 30%;
+}
+
+.produtos {
+  margin-top: 2rem;
+}
+
+.produto {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 3.5rem;
+  border-bottom: 1px solid var(--color-gray-500);
+  margin-bottom: 1rem;
+  padding-top: 0.5rem;
+  justify-content: space-between;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.nome {
+  width: 30%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.quantidade {
+  display: flex;
+  width: 20%;
+  justify-content: space-between;
+}
+
+.quantidade button {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  border: none;
+}
+
+.aumentar {
+  background-color: var(--color-success-400);
+  color: var(--color-white-500);
+}
+
+.diminuir {
+  background-color: var(--color-danger-400);
+  color: var(--color-white-500);
+}
+
+.valor_total {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.confirmar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80vw;
+  height: 4rem;
+  background-color: var(--color-primary-500);
+  color: var(--color-white-500);
+  position: fixed;
+  bottom: 2rem;
+  left: calc(50% - 40vw);
+  border-radius: 12px;
+  border: none;
+  font-size: 1.75rem;
+  font-weight: 600;
+}

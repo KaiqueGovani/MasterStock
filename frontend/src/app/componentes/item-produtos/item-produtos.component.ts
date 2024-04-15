@@ -13,17 +13,7 @@ import { PaginaEnum } from '../../enum/pagina.enum';
 })
 export class ItemProdutosComponent {
   @Input()
-  public produto: Produto = {
-    id: 0,
-    nome: '',
-    quantidade: 0,
-    desejado: 0,
-    preco: 0,
-    descricao: '',
-    dataCompra: new Date(),
-    dataValidade: new Date(),
-    urlImagem: '',
-  };
+  public produto!: Produto;
 
   @Input()
   public pagina: PaginaEnum = PaginaEnum.produtos;

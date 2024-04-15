@@ -17,13 +17,7 @@ export class ProdutoService {
 
   constructor(private router: Router, private http: HttpClient) {}
 
-  public verificarProdutos(response: ProdutosBot): void {
-    const produtos = response.produtos;
-
-    produtos.forEach((produto: ProdutoBot) => console.log(produto));
-  }
-
-  public pegarProdutos(): Promise<Produto[]> {
+  public pegarProdutos(): Promise<ProdutoBot[]> {
     return axiosInstance
       .get(PRODUTOS_PATH)
       .then((res) => {
@@ -51,6 +45,8 @@ export class ProdutoService {
   }
 
   public estaEmFalta(produto: Produto): boolean {
-    return produto.quantidade <= produto.desejado * 0.33;
+    return !!produto.desejado
+      ? Number(produto.quantidade) <= Number(produto.desejado) * 0.33
+      : false;
   }
 }

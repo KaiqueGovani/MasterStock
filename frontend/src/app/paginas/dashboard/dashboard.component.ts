@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ItemProdutosComponent } from '../../componentes/item-produtos/item-produtos.component';
 import { PaginaEnum } from '../../enum/pagina.enum';
 import { ProdutoService } from '../../services/produto.service';
+import { ProdutoBot } from '../../models/produtoBot.model';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,8 +20,14 @@ export class DashboardComponent {
   public pagina: PaginaEnum = PaginaEnum.dashboard;
 
   constructor(private produtoService: ProdutoService) {
-    this.produtoService.pegarProdutos().then((produtos: Produto[]) => {
-      this.produtos = produtos;
+    this.carregarProdutos();
+  }
+
+  private async carregarProdutos(): Promise<void> {
+    const produtos = await this.produtoService.pegarProdutos();
+
+    produtos.forEach((produto: ProdutoBot) => {
+      this.produtos.push({ ...produto, dataCompra: new Date() });
     });
   }
 }

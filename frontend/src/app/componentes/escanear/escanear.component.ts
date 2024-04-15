@@ -14,6 +14,9 @@ import { ProdutoService } from '../../services/produto.service';
 import { ProdutosBot } from '../../models/produtosBot.model';
 import { LoaderComponent } from '../loader/loader.component';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { PaginaEnum } from '../../enum/pagina.enum';
+import { VerificarService } from '../../services/verificar.service';
 
 @Component({
   selector: 'app-escanear',
@@ -36,7 +39,8 @@ export class EscanearComponent implements AfterViewInit, OnDestroy {
 
   constructor(
     private escanearService: EscanearService,
-    private produtoService: ProdutoService
+    private verificarService: VerificarService,
+    private router: Router
   ) {}
 
   ngAfterViewInit(): void {
@@ -93,9 +97,13 @@ export class EscanearComponent implements AfterViewInit, OnDestroy {
           qrcodeFormatado
         );
 
+        this.verificarService.guardarProdutos(produtos);
+
         this.estaCarregando = false;
 
-        this.produtoService.verificarProdutos(produtos as ProdutosBot);
+        localStorage.setItem('estaConfirmando', 'true');
+
+        this.router.navigateByUrl(PaginaEnum.verificarProdutos);
       } else {
         timer(500)
           .pipe(takeUntil(this.destroy$))

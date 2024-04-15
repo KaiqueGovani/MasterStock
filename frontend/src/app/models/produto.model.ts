@@ -1,11 +1,12 @@
 export interface Produto {
-  id: number;
+  id?: number;
   nome: string;
-  quantidade: number;
-  desejado: number;
-  preco: number;
-  descricao: string;
+  quantidade: string;
+  desejado?: string;
+  valor_unitario: string;
+  valor_total: string;
+  descricao?: string;
   dataCompra: Date;
-  dataValidade: Date;
-  urlImagem: string;
+  dataValidade?: Date;
+  urlImagem?: string;
 }

@@ -16,35 +16,109 @@
   </div>
 
   <div class="legenda sombra">
-    <div class="info">
-      <p>Descrição: {{ produto.descricao }}</p>
+    <div class="info" *ngIf="!estaEditando; else editando">
+      <p (click)="estaConfirmando ? alternarEstaEditando() : null">
+        Descrição: {{ produto.descricao }}
+      </p>
 
-      <p>Quantidade em estoque: {{ produto.quantidade }}</p>
+      <p>Estoque: {{ produto.quantidade }}</p>
 
-      <p>Quantidade desejada: {{ produto.desejado }}</p>
+      <p (click)="estaConfirmando ? alternarEstaEditando() : null">
+        Desejada: {{ produto.desejado }}
+      </p>
 
       <p>
         Comprado pela última vez:
         {{ getDataFormatada(produto.dataCompra.toString()) }}
       </p>
 
-      <p>Vencimente: {{ getDataFormatada(produto.dataValidade.toString()) }}</p>
-
-      <p>Último preço pago: {{ produto.preco }}</p>
-    </div>
-
-    <div class="botoes">
-      <ng-container *ngFor="let opcao of opcoes">
-        <button
-          [className]="opcao.nome"
-          class="sombra"
-          (click)="realizarAcao(opcao.nome)"
-        >
-          <span class="material-symbols-outlined icon">
-            {{ opcao.icone }}
-          </span>
-        </button>
+      <ng-container *ngIf="!!produto.dataValidade">
+        <p>
+          Vencimento: {{ getDataFormatada(produto.dataValidade.toString()) }}
+        </p>
       </ng-container>
+
+      <p>Preço: R$ {{ produto.valor_unitario }}</p>
     </div>
+
+    <ng-template #editando>
+      <div class="info">
+        <div class="campo">
+          <label for="descricao">Descrição: </label>
+          <input
+            type="text"
+            placeholder="{{ produto.descricao }}"
+            [(ngModel)]="produto.descricao"
+          />
+        </div>
+
+        <div class="campo">
+          <label for="quantidade">Estoque: </label>
+          <input
+            type="text"
+            placeholder="{{ produto.quantidade }}"
+            [(ngModel)]="produto.quantidade"
+          />
+        </div>
+
+        <div class="campo">
+          <label for="desejado">Desejada: </label>
+          <input
+            type="text"
+            placeholder="{{ produto.desejado }}"
+            [(ngModel)]="produto.desejado"
+          />
+        </div>
+
+        <p>
+          Comprado pela última vez:
+          {{ getDataFormatada(produto.dataCompra.toString()) }}
+        </p>
+
+        <ng-container *ngIf="!!produto.dataValidade">
+          <p>
+            Vencimento: {{ getDataFormatada(produto.dataValidade.toString()) }}
+          </p>
+        </ng-container>
+
+        <div class="campo">
+          <label for="valor">Preço: </label>
+          <input
+            type="text"
+            placeholder="R$ {{ produto.valor_unitario }}"
+            [(ngModel)]="produto.valor_unitario"
+          />
+        </div>
+      </div>
+    </ng-template>
+
+    <ng-container *ngIf="estaConfirmando"
+      ><ng-container *ngIf="!estaEditando">
+        <div class="botoes">
+          <ng-container *ngFor="let opcao of opcoes">
+            <button
+              [className]="opcao.nome"
+              class="sombra"
+              (click)="realizarAcao(opcao)"
+            >
+              <span class="material-symbols-outlined icon">
+                {{ opcao.icone }}
+              </span>
+            </button>
+          </ng-container>
+        </div>
+      </ng-container>
+
+      <ng-container *ngIf="estaEditando">
+        <div class="botoes">
+          <button
+            (click)="estaConfirmando ? alternarEstaEditando() : null"
+            class="feito"
+          >
+            <span class="material-symbols-outlined icon"> done </span>
+          </button>
+        </div>
+      </ng-container></ng-container
+    >
   </div>
 </div>
