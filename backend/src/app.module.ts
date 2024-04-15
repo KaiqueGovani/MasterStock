@@ -6,10 +6,11 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './api/auth/auth.module';
 import { ProductsModule } from './api/products/products.module';
 import { UsersModule } from './api/users/users.module';
+import { QrcodeController } from './api/qrcode/qrcode.controller';
 
 @Module({
   imports: [ProductsModule, ConfigModule.forRoot({ isGlobal: true }), DatabaseModule, AuthModule, UsersModule],
-  controllers: [AppController],
+  controllers: [AppController, QrcodeController],
   providers: [AppService],
 })
 export class AppModule {}

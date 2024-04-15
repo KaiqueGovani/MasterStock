@@ -10,7 +10,7 @@ services:
     volumes:
       - ./frontend:/frontend
       - /frontend/node_modules
-    command: ng serve --proxy-config proxy.conf.json --host 0.0.0.0 --poll 2000
+    command: sh -c "npm i && ng serve --proxy-config proxy.conf.json --host 0.0.0.0 --poll 2000"
 
   # Serviço de backend
   node:
@@ -23,7 +23,7 @@ services:
       - /backend/node_modules
     env_file:
       - .env
-    command: nest start --debug 0.0.0.0 --watch
+    command: sh -c "npm i && nest start --debug 0.0.0.0 --watch"
 
   # Serviço do bot de web scraping
   bot:
