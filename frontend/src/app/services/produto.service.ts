@@ -17,9 +17,33 @@ export class ProdutoService {
 
   constructor(private router: Router, private http: HttpClient) {}
 
-  public pegarProdutos(): Promise<ProdutoBot[]> {
+  public pegarProdutos(): Promise<Produto[]> {
     return axiosInstance
       .get(PRODUTOS_PATH)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        throw err;
+      });
+  }
+
+  public guardarProdutos(produtos: Produto[]): Promise<void> {
+    return axiosInstance
+      .post(PRODUTOS_PATH + '/many', produtos)
+      .then((res) => {
+        return res.data;
+      })
+      .catch((err) => {
+        console.log(err);
+        throw err;
+      });
+  }
+
+  public atualizarProduto(produto: Produto): Promise<void> {
+    return axiosInstance
+      .patch(PRODUTOS_PATH + `/${produto._id}`, produto)
       .then((res) => {
         return res.data;
       })

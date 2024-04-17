@@ -91,33 +91,28 @@
       </div>
     </ng-template>
 
-    <ng-container *ngIf="estaConfirmando"
-      ><ng-container *ngIf="!estaEditando">
-        <div class="botoes">
-          <ng-container *ngFor="let opcao of opcoes">
-            <button
-              [className]="opcao.nome"
-              class="sombra"
-              (click)="realizarAcao(opcao)"
-            >
-              <span class="material-symbols-outlined icon">
-                {{ opcao.icone }}
-              </span>
-            </button>
-          </ng-container>
-        </div>
-      </ng-container>
+    <ng-template #confirmar>
+      <div class="botoes">
+        <button (click)="alternarEstaEditando()" class="feito">
+          <span class="material-symbols-outlined icon"> done </span>
+        </button>
+      </div>
+    </ng-template>
 
-      <ng-container *ngIf="estaEditando">
-        <div class="botoes">
+    <ng-container *ngIf="!estaEditando; else confirmar">
+      <div class="botoes">
+        <ng-container *ngFor="let opcao of opcoes">
           <button
-            (click)="estaConfirmando ? alternarEstaEditando() : null"
-            class="feito"
+            [className]="opcao.nome"
+            class="sombra"
+            (click)="realizarAcao(opcao)"
           >
-            <span class="material-symbols-outlined icon"> done </span>
+            <span class="material-symbols-outlined icon">
+              {{ opcao.icone }}
+            </span>
           </button>
-        </div>
-      </ng-container></ng-container
-    >
+        </ng-container>
+      </div>
+    </ng-container>
   </div>
 </div>

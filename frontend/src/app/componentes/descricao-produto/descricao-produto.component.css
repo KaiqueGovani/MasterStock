@@ -1,8 +1,9 @@
 .descricaoProduto {
   position: relative;
-  top: -0.65rem;
-  height: 90%;
+  height: 100%;
   width: 100%;
+  margin-top: 6rem;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,12 +47,12 @@
 
 .legenda {
   position: relative;
-  bottom: -0.65rem;
-  height: 26rem;
+  height: 21.675rem;
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-top: 8rem;
   padding: 2rem;
   background-color: var(--color-primary-500);
   color: var(--color-white-500);

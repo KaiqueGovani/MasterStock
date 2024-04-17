@@ -1,12 +1,15 @@
 .produtos {
-  height: 0;
+  height: 100%;
   width: 100%;
+  overflow: scroll;
   padding: 2rem;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
   cursor: pointer;
+  margin-top: 6rem;
+  padding-bottom: 6rem;
 }
 
 .produto {

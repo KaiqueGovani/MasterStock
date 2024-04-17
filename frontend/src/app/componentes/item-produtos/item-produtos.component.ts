@@ -27,4 +27,12 @@ export class ItemProdutosComponent {
   public abrirDetalhe(): void {
     this.produtoService.abrirDetalhe(this.produto, this.pagina);
   }
+
+  public temDesejado(): boolean {
+    if (!!this.produto.desejado && Number(this.produto.desejado) > 0) {
+      return true;
+    }
+
+    return false;
+  }
 }

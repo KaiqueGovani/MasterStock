@@ -1,17 +1,25 @@
 .dashboard {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 1.8rem;
+  padding: 2rem;
 }
 
 .itensDestaque {
+  overflow: scroll;
   height: 15rem;
-  width: 100%;
+  width: auto;
   display: flex;
+  justify-content: start;
   align-items: center;
   gap: 1rem;
+  margin-top: 6rem;
   padding: 0.8rem;
-  /* border-radius: 0.4rem;
-  background-color: var(--color-primary-100); */
-  overflow: scroll;
+}
+
+.sem-produtos {
+  margin-left: 4rem;
 }

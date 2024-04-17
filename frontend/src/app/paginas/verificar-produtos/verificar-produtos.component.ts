@@ -36,22 +36,30 @@ export class VerificarProdutosComponent implements OnInit {
     const produtos = this.verificarService.pegarProdutos();
 
     this.produtos = produtos.map((produto: Produto) => {
+      const _id = produto._id;
+      const codigo = produto.codigo;
       const nome = produto.nome;
-      const descricao = produto.descricao || '';
       const quantidade = produto.quantidade;
       const desejado = produto.desejado || '';
-      const valorUnitario = produto.valor_unitario;
       const valorTotal = produto.valor_total;
+      const valorUnitario = produto.valor_unitario;
+      const favoritado = produto.favoritado || false;
+      const descricao = produto.descricao || '';
       const dataCompra = new Date();
+      const imagem = produto.imagem || '';
 
       return {
+        _id,
+        codigo,
         nome,
-        descricao,
         quantidade,
         desejado,
-        valor_unitario: valorUnitario,
         valor_total: valorTotal,
+        valor_unitario: valorUnitario,
+        favoritado,
+        descricao,
         data_compra: dataCompra,
+        imagem,
       };
     });
 
@@ -95,6 +103,9 @@ export class VerificarProdutosComponent implements OnInit {
 
   public confirmarProdutos(): void {
     localStorage.setItem('estaConfirmando', 'false');
+
+    this.produtoService.guardarProdutos(this.produtos);
+
     this.router.navigateByUrl(PaginaEnum.produtos);
   }
 

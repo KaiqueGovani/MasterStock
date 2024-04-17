@@ -1,0 +1,27 @@
+.sem-produtos {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 60vw;
+  height: 14vh;
+  border-radius: 10px;
+  background-color: var(--color-gray-500);
+}
+
+p {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-primary-500);
+}
+
+button {
+  width: 30vw;
+  height: 5vh;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  background-color: var(--color-warning-500);
+  color: var(--color-white-500);
+  font-weight: 600;
+}

@@ -6,13 +6,19 @@ import { CommonModule } from '@angular/common';
 import { PaginaEnum } from '../../enum/pagina.enum';
 import { ProdutoService } from '../../services/produto.service';
 import { ProdutoBot } from '../../models/produtoBot.model';
+import { SemProdutosComponent } from '../../componentes/sem-produtos/sem-produtos.component';
 
 @Component({
   selector: 'app-produtos',
   standalone: true,
   templateUrl: './produtos.component.html',
   styleUrl: './produtos.component.css',
-  imports: [CommonModule, CabecalhoComponent, ItemProdutosComponent],
+  imports: [
+    CommonModule,
+    CabecalhoComponent,
+    ItemProdutosComponent,
+    SemProdutosComponent,
+  ],
 })
 export class ProdutosComponent {
   public produtos: Produto[] = [];
@@ -24,10 +30,6 @@ export class ProdutosComponent {
   }
 
   private async carregarProdutos(): Promise<void> {
-    const produtos = await this.produtoService.pegarProdutos();
-
-    produtos.forEach((produto: ProdutoBot) => {
-      this.produtos.push({ ...produto, data_compra: new Date() });
-    });
+    this.produtos = await this.produtoService.pegarProdutos();
   }
 }

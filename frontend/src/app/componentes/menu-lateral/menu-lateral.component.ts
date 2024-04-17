@@ -3,6 +3,7 @@ import { ItemMenu } from '../../models/itensMenu.model';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
+import { PaginaEnum } from '../../enum/pagina.enum';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -16,25 +17,25 @@ export class MenuLateralComponent {
     {
       nome: 'Dashboard',
       icon: 'home',
-      url: '/dashboard',
+      url: PaginaEnum.dashboard,
       ativo: false,
     },
     {
       nome: 'Produtos',
       icon: 'app_registration',
-      url: '/produtos',
+      url: PaginaEnum.produtos,
       ativo: false,
     },
     {
       nome: 'Lista de compras',
       icon: 'shopping_cart',
-      url: '/lista-de-compras',
+      url: PaginaEnum.listaDeCompras,
       ativo: false,
     },
     {
       nome: 'Escanear!',
       icon: 'qr_code',
-      url: '/escanear',
+      url: PaginaEnum.escanear,
       ativo: false,
       classe: 'escanear',
     },

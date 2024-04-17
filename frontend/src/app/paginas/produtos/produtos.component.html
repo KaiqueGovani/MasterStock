@@ -1,11 +1,17 @@
 <app-cabecalho nomePagina="Produtos"></app-cabecalho>
 
 <div class="produtos">
-  <ng-container *ngFor="let produto of produtos">
-    <app-item-produtos
-      [pagina]="pagina"
-      class="produto"
-      [produto]="produto"
-    ></app-item-produtos>
+  <ng-container *ngIf="produtos.length !== 0" ; else semProdutos>
+    <ng-container *ngFor="let produto of produtos">
+      <app-item-produtos
+        [pagina]="pagina"
+        class="produto"
+        [produto]="produto"
+      ></app-item-produtos>
+    </ng-container>
   </ng-container>
+
+  <ng-template #semProdutos>
+    <app-sem-produtos></app-sem-produtos>
+  </ng-template>
 </div>

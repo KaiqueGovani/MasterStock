@@ -105,7 +105,11 @@ export class DescricaoProdutoComponent implements OnInit {
     this.estaEditando = !this.estaEditando;
 
     if (!this.estaEditando) {
-      this.verificarService.atualizarProduto(this.produto);
+      if (this.estaConfirmando) {
+        this.verificarService.atualizarProduto(this.produto);
+      } else {
+        this.produtoService.atualizarProduto(this.produto);
+      }
     }
   }
 

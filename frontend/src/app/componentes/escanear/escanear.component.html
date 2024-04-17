@@ -1,13 +1,15 @@
 <app-cabecalho [nomePagina]="'Escanear'"></app-cabecalho>
 
-<div class="leitor">
-  <video #videoElement autoplay playsinline></video>
-</div>
+<div class="escanear">
+  <div class="leitor">
+    <video #videoElement autoplay playsinline></video>
+  </div>
 
-<div>
-  <canvas #canvas id="canvas" style="display: none"></canvas>
-</div>
+  <div>
+    <canvas #canvas id="canvas" style="display: none"></canvas>
+  </div>
 
-<ng-container *ngIf="estaCarregando">
-  <app-loader></app-loader>
-</ng-container>
+  <ng-container *ngIf="estaCarregando">
+    <app-loader></app-loader>
+  </ng-container>
+</div>

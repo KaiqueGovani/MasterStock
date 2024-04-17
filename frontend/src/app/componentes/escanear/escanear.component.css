@@ -1,8 +1,14 @@
+.escanear {
+  height: 100%;
+  overflow: hidden;
+}
+
 .leitor {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-top: 6rem;
   padding: 2rem 0;
 }
 

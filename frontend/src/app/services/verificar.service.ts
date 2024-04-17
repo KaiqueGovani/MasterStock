@@ -15,7 +15,16 @@ export class VerificarService {
   constructor(private router: Router) {}
 
   public guardarProdutos(produtosBot: ProdutosBot): void {
-    this.produtosParaVerificar = produtosBot.produtos;
+    const produtos = produtosBot.produtos;
+
+    produtos.forEach((produto: ProdutoBot) => {
+      this.produtosParaVerificar.push({
+        _id: '',
+        ...produto,
+        favoritado: false,
+      });
+    });
+
     this.valorTotal = produtosBot.valor_completo;
   }
 

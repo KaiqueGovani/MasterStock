@@ -1,6 +1,7 @@
 .container {
   width: 100vw;
   height: calc(100% - 6rem);
+  margin-top: 6rem;
   padding: 1.5rem;
   overflow: scroll;
 }
@@ -70,7 +71,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vw;
   font-size: 1.75rem;
   font-weight: 600;
 }

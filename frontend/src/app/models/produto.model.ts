@@ -1,9 +1,10 @@
 export interface Produto {
-  id?: string;
+  _id: string;
   codigo?: string;
   nome: string;
   quantidade: string;
   desejado?: string;
+  favoritado: boolean;
   valor_unitario: string;
   valor_total: string;
   descricao?: string;

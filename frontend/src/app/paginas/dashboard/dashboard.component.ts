@@ -6,28 +6,39 @@ import { ItemProdutosComponent } from '../../componentes/item-produtos/item-prod
 import { PaginaEnum } from '../../enum/pagina.enum';
 import { ProdutoService } from '../../services/produto.service';
 import { ProdutoBot } from '../../models/produtoBot.model';
+import { SemProdutosComponent } from '../../componentes/sem-produtos/sem-produtos.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css',
-  imports: [CommonModule, CabecalhoComponent, ItemProdutosComponent],
+  imports: [
+    CommonModule,
+    CabecalhoComponent,
+    ItemProdutosComponent,
+    SemProdutosComponent,
+  ],
 })
 export class DashboardComponent {
-  public produtos: Produto[] = [];
+  public produtosFavoritados: Produto[] = [];
+  public produtosEstaVazio: boolean = true;
 
   public pagina: PaginaEnum = PaginaEnum.dashboard;
 
   constructor(private produtoService: ProdutoService) {
     this.carregarProdutos();
+
+    console.log(this.produtosEstaVazio);
   }
 
   private async carregarProdutos(): Promise<void> {
     const produtos = await this.produtoService.pegarProdutos();
 
-    produtos.forEach((produto: ProdutoBot) => {
-      this.produtos.push({ ...produto, data_compra: new Date() });
-    });
+    this.produtosFavoritados = produtos.filter(
+      (produto: Produto) => produto.favoritado
+    );
+
+    this.produtosEstaVazio = this.produtosFavoritados.length === 0;
   }
 }

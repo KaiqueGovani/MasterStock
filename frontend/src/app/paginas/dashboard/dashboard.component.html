@@ -2,11 +2,19 @@
 
 <div class="dashboard">
   <div class="itensDestaque">
-    <ng-container *ngFor="let produto of produtos">
-      <app-item-produtos
-        [pagina]="pagina"
-        [produto]="produto"
-      ></app-item-produtos>
+    <ng-container *ngIf="!produtosEstaVazio; else semProdutos">
+      <ng-container *ngFor="let produto of produtosFavoritados">
+        <app-item-produtos
+          [pagina]="pagina"
+          [produto]="produto"
+        ></app-item-produtos>
+      </ng-container>
     </ng-container>
+
+    <ng-template #semProdutos>
+      <div class="sem-produtos">
+        <app-sem-produtos></app-sem-produtos>
+      </div>
+    </ng-template>
   </div>
 </div>
