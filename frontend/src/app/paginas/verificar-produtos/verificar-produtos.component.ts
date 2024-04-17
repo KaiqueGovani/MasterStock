@@ -35,13 +35,25 @@ export class VerificarProdutosComponent implements OnInit {
   public verificarProdutos(): void {
     const produtos = this.verificarService.pegarProdutos();
 
-    this.produtos = produtos.map((produto: ProdutoBot) => ({
-      nome: produto.nome,
-      quantidade: produto.quantidade.replace('Qtde.:', ''),
-      valor_unitario: produto.valor_unitario.replace('Vl. Unit.:', '').trim(),
-      valor_total: produto.valor_total,
-      dataCompra: new Date(),
-    }));
+    this.produtos = produtos.map((produto: Produto) => {
+      const nome = produto.nome;
+      const descricao = produto.descricao || '';
+      const quantidade = produto.quantidade;
+      const desejado = produto.desejado || '';
+      const valorUnitario = produto.valor_unitario;
+      const valorTotal = produto.valor_total;
+      const dataCompra = new Date();
+
+      return {
+        nome,
+        descricao,
+        quantidade,
+        desejado,
+        valor_unitario: valorUnitario,
+        valor_total: valorTotal,
+        data_compra: dataCompra,
+      };
+    });
 
     this.verificarService.guardarProdutosComData(this.produtos);
   }

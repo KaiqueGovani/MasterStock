@@ -9,7 +9,6 @@ import { OpcaoProduto } from '../../models/opcaoProduto.model';
 import { OpcaoProdutoEnum } from '../../enum/opcaoProduto.enum';
 import { PaginaEnum } from '../../enum/pagina.enum';
 import { VerificarService } from '../../services/verificar.service';
-import { ProdutoBot } from '../../models/produtoBot.model';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -54,21 +53,15 @@ export class DescricaoProdutoComponent implements OnInit {
     this.estaConfirmando = this.verificarService.estaConfirmando();
   }
   ngOnInit(): void {
-    const produtoEscolhido = this.produtoService.pegarProdutoEscolhido();
-    this.produto = {
-      ...produtoEscolhido,
-      desejado: !!produtoEscolhido.desejado
-        ? produtoEscolhido.desejado
-        : 'Clique para adicionar',
-      descricao: !!produtoEscolhido.descricao
-        ? produtoEscolhido.descricao
-        : 'Clique para adicionar',
-      urlImagem: !!produtoEscolhido.urlImagem
-        ? produtoEscolhido.urlImagem
-        : 'https://fakeimg.pl/800x800?text=Adicionar+',
-    };
+    this.produto = this.produtoService.pegarProdutoEscolhido();
     this.pagina = this.produtoService.pegarPagina();
-    this.produtos = this.verificarService.pegarProdutos() as Produto[];
+    this.produtos = this.verificarService.pegarProdutos();
+
+    const isEmpty = Object.keys(this.produto).length === 0;
+
+    if (isEmpty) {
+      this.voltar();
+    }
   }
 
   public estaEmFalta(): boolean {
@@ -96,9 +89,11 @@ export class DescricaoProdutoComponent implements OnInit {
         break;
 
       case OpcaoProdutoEnum.adicionar:
+        this.aumentarQuantidade();
         break;
 
       case OpcaoProdutoEnum.deletar:
+        this.diminuirQuantidade();
         break;
 
       case OpcaoProdutoEnum.favoritar:
@@ -106,22 +101,31 @@ export class DescricaoProdutoComponent implements OnInit {
     }
   }
 
-  private atualizarProdutoNaLista(): Produto[] {
-    const products = this.verificarService.pegarProdutos();
-    const productIdx = products.findIndex(
-      (product) => product.nome === this.produto.nome
-    );
-
-    this.verificarService.guardarProdutoNoIndice(this.produto, productIdx);
-    return this.verificarService.pegarProdutos() as Produto[];
-  }
-
   public alternarEstaEditando(): void {
     this.estaEditando = !this.estaEditando;
 
     if (!this.estaEditando) {
-      this.atualizarProdutoNaLista();
-      this.router.navigateByUrl(PaginaEnum.verificarProdutos);
+      this.verificarService.atualizarProduto(this.produto);
     }
+  }
+
+  public aumentarQuantidade(): void {
+    const quantidade = Number(this.produto.quantidade) + 1;
+
+    this.produto.quantidade = String(quantidade);
+
+    this.verificarService.atualizarProduto(this.produto);
+  }
+
+  public diminuirQuantidade(): void {
+    if (Number(this.produto.quantidade) < 1) {
+      return;
+    }
+
+    const quantidade = Number(this.produto.quantidade) - 1;
+
+    this.produto.quantidade = String(quantidade);
+
+    this.verificarService.atualizarProduto(this.produto);
   }
 }

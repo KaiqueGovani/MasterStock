@@ -27,7 +27,7 @@ export class DashboardComponent {
     const produtos = await this.produtoService.pegarProdutos();
 
     produtos.forEach((produto: ProdutoBot) => {
-      this.produtos.push({ ...produto, dataCompra: new Date() });
+      this.produtos.push({ ...produto, data_compra: new Date() });
     });
   }
 }

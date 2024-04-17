@@ -9,14 +9,14 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class VerificarService {
-  private produtosParaVerificar: ProdutoBot[] = [];
+  private produtosParaVerificar: Produto[] = [];
   private valorTotal: string = '0,00';
 
   constructor(private router: Router) {}
 
-  public guardarProdutos(produtos: ProdutosBot): void {
-    this.produtosParaVerificar = produtos.produtos;
-    this.valorTotal = produtos.valor_completo;
+  public guardarProdutos(produtosBot: ProdutosBot): void {
+    this.produtosParaVerificar = produtosBot.produtos;
+    this.valorTotal = produtosBot.valor_completo;
   }
 
   public guardarProdutosComData(produtos: Produto[]): void {
@@ -27,7 +27,18 @@ export class VerificarService {
     this.produtosParaVerificar[indice] = produto;
   }
 
-  public pegarProdutos(): ProdutoBot[] {
+  public atualizarProduto(produtoParaAtualizar: Produto): void {
+    this.produtosParaVerificar.map((produto) => {
+      if (produto.nome === produtoParaAtualizar.nome) {
+        this.guardarProdutoNoIndice(
+          produtoParaAtualizar,
+          this.produtosParaVerificar.indexOf(produto)
+        );
+      }
+    });
+  }
+
+  public pegarProdutos(): Produto[] {
     return this.produtosParaVerificar;
   }
 
