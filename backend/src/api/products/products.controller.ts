@@ -2,12 +2,13 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@n
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { ApiBearerAuth, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { AuthGuard } from '../auth/auth.guard';
 
 @ApiBearerAuth()
 @ApiTags('products')
 @ApiUnauthorizedResponse({ description: 'Acesso Negado!' })
+@ApiResponse({ status: 500, description: 'Erro ao realizar operação!' })
 @UseGuards(AuthGuard)
 @Controller('products')
 export class ProductsController {
@@ -16,6 +17,12 @@ export class ProductsController {
   @Post()
   create(@Body() createProductDto: CreateProductDto) {
     return this.productsService.create(createProductDto);
+  }
+
+  @ApiBody({ type: [CreateProductDto] })
+  @Post('many')
+  createBulk(@Body() createProductDtoList: CreateProductDto[]) {
+    return this.productsService.createMany(createProductDtoList);
   }
 
   @Get()

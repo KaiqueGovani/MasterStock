@@ -15,11 +15,20 @@ export class Product implements ProductModel {
   @Prop()
   quantidade?: string;
 
+  @Prop()
+  desejado?: string;
+
   @Prop({ required: true })
   valor_total: string;
 
   @Prop({ required: true })
   valor_unitario: string;
+
+  @Prop()
+  descricao?: string;
+
+  @Prop({ required: true })
+  data_compra: string;
 
   @Prop()
   imagem?: string;
