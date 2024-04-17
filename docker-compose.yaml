@@ -36,30 +36,31 @@ services:
       - ./bot/webScraping.py:/app/webScraping.py
     command: flask run --host=0.0.0.0 --debug
 
-  # Serviço de banco de dados
-  mongo:
-    container_name: mongo
-    image: mongo
-    ports:
-      - 27017:27017
-    volumes:
-      - ./data:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+  # Serviço de banco de dados para dev local
+  # mongo:
+  #   container_name: mongo
+  #   image: mongo
+  #   ports:
+  #     - 27017:27017
+  #   volumes:
+  #     - ./data:/data/db
+  #   environment:
+  #     MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USER}
+  #     MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
 
   # Serviço admin do banco de dados
-  mongo-express:
-    container_name: mongo-express
-    image: mongo-express
-    ports:
-      - 8081:8081
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ROOT_USER}
-      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ROOT_PASSWORD}
-      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongo/
-      ME_CONFIG_BASICAUTH_USERNAME: ${ME_USER}
-      ME_CONFIG_BASICAUTH_PASSWORD: ${ME_PASSWORD}
+  # mongo-express:
+  #   container_name: mongo-express
+  #   image: mongo-express
+  #   ports:
+  #     - 8081:8081
+  #   environment:
+  #     ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_ROOT_USER}
+  #     ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_ROOT_PASSWORD}
+  #     ME_CONFIG_MONGODB_URL: mongodb://${MONGO_ROOT_USER}:${MONGO_ROOT_PASSWORD}@mongo/
+  #     ME_CONFIG_BASICAUTH_USERNAME: ${ME_USER}
+  #     ME_CONFIG_BASICAUTH_PASSWORD: ${ME_PASSWORD}
+  #     ME_CONFIG_SITE_SSL_ENABLED: true
 
   # grafana:
   #  image: grafana/grafana-enterprise
