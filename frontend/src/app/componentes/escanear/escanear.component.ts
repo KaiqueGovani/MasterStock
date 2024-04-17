@@ -93,11 +93,11 @@ export class EscanearComponent implements AfterViewInit, OnDestroy {
 
         this.estaCarregando = true;
 
-        const produtos: ProdutosBot = await this.escanearService.escanear(
+        const produtosBot: ProdutosBot = await this.escanearService.escanear(
           qrcodeFormatado
         );
 
-        this.verificarService.guardarProdutos(produtos);
+        this.verificarService.guardarProdutos(produtosBot);
 
         this.estaCarregando = false;
 

@@ -17,17 +17,7 @@
 
         <p>R$ {{ produto.valor_total }}</p>
 
-        <div class="quantidade">
-          <button class="aumentar" (click)="aumentarQuantidade(produto)">
-            +
-          </button>
-
-          <p>{{ produto.quantidade }}</p>
-
-          <button class="diminuir" (click)="diminuirQuantidade(produto)">
-            -
-          </button>
-        </div>
+        <p>{{ produto.quantidade }}</p>
       </div>
     </ng-container>
 

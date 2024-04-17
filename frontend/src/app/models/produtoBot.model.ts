@@ -1,9 +1,8 @@
 export interface ProdutoBot {
-  codigo?: string;
+  codigo: string;
   nome: string;
   quantidade: string;
   valor_total: string;
   valor_unitario: string;
-  dataCompra?: Date;
-  descricao?: string;
+  data_compra: Date;
 }

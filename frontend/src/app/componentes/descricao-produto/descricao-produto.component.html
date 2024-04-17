@@ -12,29 +12,30 @@
   </div>
 
   <div class="img">
-    <img [src]="produto.urlImagem" alt="" />
+    <img
+      [src]="
+        produto.imagem || 'https://fakeimg.pl/600x600?text=Adicionar&font=bebas'
+      "
+      alt=""
+    />
   </div>
 
   <div class="legenda sombra">
     <div class="info" *ngIf="!estaEditando; else editando">
       <p (click)="estaConfirmando ? alternarEstaEditando() : null">
-        Descrição: {{ produto.descricao }}
+        Descrição: {{ produto.descricao || "Clique para adicionar" }}
       </p>
 
       <p>Estoque: {{ produto.quantidade }}</p>
 
       <p (click)="estaConfirmando ? alternarEstaEditando() : null">
-        Desejada: {{ produto.desejado }}
+        Desejada: {{ produto.desejado || "Clique para adicionar" }}
       </p>
 
-      <p>
-        Comprado pela última vez:
-        {{ getDataFormatada(produto.dataCompra.toString()) }}
-      </p>
-
-      <ng-container *ngIf="!!produto.dataValidade">
+      <ng-container *ngIf="!!produto.data_compra">
         <p>
-          Vencimento: {{ getDataFormatada(produto.dataValidade.toString()) }}
+          Comprado pela última vez:
+          {{ getDataFormatada(produto.data_compra.toString()) }}
         </p>
       </ng-container>
 
@@ -47,7 +48,7 @@
           <label for="descricao">Descrição: </label>
           <input
             type="text"
-            placeholder="{{ produto.descricao }}"
+            placeholder="{{ produto.descricao || 'Descrição do produto' }}"
             [(ngModel)]="produto.descricao"
           />
         </div>
@@ -65,19 +66,17 @@
           <label for="desejado">Desejada: </label>
           <input
             type="text"
-            placeholder="{{ produto.desejado }}"
+            placeholder="{{
+              produto.desejado || 'Quantidade desejada no estoque'
+            }}"
             [(ngModel)]="produto.desejado"
           />
         </div>
 
-        <p>
-          Comprado pela última vez:
-          {{ getDataFormatada(produto.dataCompra.toString()) }}
-        </p>
-
-        <ng-container *ngIf="!!produto.dataValidade">
+        <ng-container *ngIf="!!produto.data_compra">
           <p>
-            Vencimento: {{ getDataFormatada(produto.dataValidade.toString()) }}
+            Comprado pela última vez:
+            {{ getDataFormatada(produto.data_compra.toString()) }}
           </p>
         </ng-container>
 
