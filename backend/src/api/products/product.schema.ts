@@ -24,6 +24,9 @@ export class Product implements ProductModel {
   @Prop({ required: true })
   valor_unitario: string;
 
+  @Prop({ default: false })
+  favoritado: boolean = false;
+
   @Prop()
   descricao?: string;
 

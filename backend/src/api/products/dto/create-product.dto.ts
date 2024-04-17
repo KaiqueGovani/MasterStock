@@ -38,6 +38,12 @@ export class CreateProductDto implements Product {
   valor_unitario: string;
 
   /**
+   * Produto favoritado
+   * @example false
+   */
+  favoritado: boolean = false;
+
+  /**
    * Descrição do produto
    * @example 'Camisa Polo Piquet Masculina'
    */
