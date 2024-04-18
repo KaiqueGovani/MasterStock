@@ -37,6 +37,7 @@
   font-weight: 600;
   border-radius: 100%;
 }
+
 .img img {
   height: 22rem;
   width: 22rem;
@@ -80,8 +81,9 @@
 .botoes .adicionar,
 .botoes .deletar,
 .botoes .favoritar {
-  height: 100%;
-  width: 22.5%;
+  position: relative;
+  height: 5vh;
+  width: 20vw;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -110,6 +112,16 @@
 
 .favoritar {
   background-color: var(--color-info-500);
+}
+
+.favoritado {
+  position: absolute;
+  top: calc(50% - 0.65vh);
+  left: calc(50% - 1.2vw);
+  height: 0.9rem;
+  width: 0.9rem;
+  background-color: var(--color-white-500);
+  border-radius: 100%;
 }
 
 .feito {

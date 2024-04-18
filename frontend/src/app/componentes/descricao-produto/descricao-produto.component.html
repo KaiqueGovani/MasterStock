@@ -1,6 +1,10 @@
 <app-cabecalho [nomePagina]="produto.nome"></app-cabecalho>
 
 <div class="descricaoProduto">
+  <ng-container *ngIf="mostrarMensagemConfirmacao">
+    <app-confirmacao (confirmado)="aoConfirmar($event)" [mensagem]="mensagemConfirmacao"></app-confirmacao>
+  </ng-container>
+
   <div class="icons">
     <div (click)="voltar()">
       <span class="voltar material-symbols-outlined"> arrow_back_ios </span>
@@ -21,7 +25,7 @@
   </div>
 
   <div class="legenda sombra">
-    <div class="info" *ngIf="!estaEditando; else editando">
+    <div *ngIf="!estaEditando; else editando" class="info">
       <p (click)="estaConfirmando ? alternarEstaEditando() : null">
         Descrição: {{ produto.descricao || "Clique para adicionar" }}
       </p>
@@ -47,29 +51,29 @@
         <div class="campo">
           <label for="descricao">Descrição: </label>
           <input
-            type="text"
-            placeholder="{{ produto.descricao || 'Descrição do produto' }}"
             [(ngModel)]="produto.descricao"
+            placeholder="{{ produto.descricao || 'Descrição do produto' }}"
+            type="text"
           />
         </div>
 
         <div class="campo">
           <label for="quantidade">Estoque: </label>
           <input
-            type="text"
-            placeholder="{{ produto.quantidade }}"
             [(ngModel)]="produto.quantidade"
+            placeholder="{{ produto.quantidade }}"
+            type="text"
           />
         </div>
 
         <div class="campo">
           <label for="desejado">Desejada: </label>
           <input
-            type="text"
+            [(ngModel)]="produto.desejado"
             placeholder="{{
               produto.desejado || 'Quantidade desejada no estoque'
             }}"
-            [(ngModel)]="produto.desejado"
+            type="text"
           />
         </div>
 
@@ -83,9 +87,9 @@
         <div class="campo">
           <label for="valor">Preço: </label>
           <input
-            type="text"
-            placeholder="R$ {{ produto.valor_unitario }}"
             [(ngModel)]="produto.valor_unitario"
+            placeholder="R$ {{ produto.valor_unitario }}"
+            type="text"
           />
         </div>
       </div>
@@ -103,12 +107,16 @@
       <div class="botoes">
         <ng-container *ngFor="let opcao of opcoes">
           <button
+            (click)="realizarAcao(opcao)"
             [className]="opcao.nome"
             class="sombra"
-            (click)="realizarAcao(opcao)"
           >
             <span class="material-symbols-outlined icon">
               {{ opcao.icone }}
+
+              <ng-container *ngIf="opcao.nome === OpcaoProdutoEnum.favoritar && produto.favoritado">
+                <div class="favoritado"></div>
+              </ng-container>
             </span>
           </button>
         </ng-container>

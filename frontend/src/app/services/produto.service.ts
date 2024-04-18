@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
-import { Produto } from '../models/produto.model';
-import { Router } from '@angular/router';
-import { PaginaEnum } from '../enum/pagina.enum';
-import { HttpClient } from '@angular/common/http';
-import { ProdutosBot } from '../models/produtosBot.model';
-import { ProdutoBot } from '../models/produtoBot.model';
-import { PRODUTOS_PATH } from './services.const';
+import {Injectable} from '@angular/core';
+import {Produto} from '../models/produto.model';
+import {Router} from '@angular/router';
+import {PaginaEnum} from '../enum/pagina.enum';
+import {HttpClient} from '@angular/common/http';
+import {PRODUTOS_PATH} from './services.const';
 import axiosInstance from '../interceptors/axios.interceptor';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -15,7 +14,8 @@ export class ProdutoService {
 
   public pagina: PaginaEnum = PaginaEnum.produtos;
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private router: Router, private http: HttpClient) {
+  }
 
   public pegarProdutos(): Promise<Produto[]> {
     return axiosInstance
@@ -43,11 +43,22 @@ export class ProdutoService {
 
   public atualizarProduto(produto: Produto): Promise<void> {
     return axiosInstance
-      .patch(PRODUTOS_PATH + `/${produto._id}`, produto)
+      .put(PRODUTOS_PATH + `/${produto._id}`, produto)
       .then((res) => {
         return res.data;
       })
       .catch((err) => {
+        console.log(err);
+        throw err;
+      });
+  }
+
+  public removerProduto(produto: Produto): Promise<void> {
+    return axiosInstance
+      .delete(PRODUTOS_PATH + `/${produto._id}`)
+      .then((res) => {
+        return res.data;
+      }).catch((err) => {
         console.log(err);
         throw err;
       });
