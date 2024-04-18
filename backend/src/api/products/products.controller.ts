@@ -1,9 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Delete, UseGuards, Put, HttpCode } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiBody,
+  ApiNoContentResponse,
+  ApiOkResponse,
+  ApiResponse,
+  ApiTags,
+  ApiUnauthorizedResponse,
+} from '@nestjs/swagger';
 import { AuthGuard } from '../auth/auth.guard';
+import { OperationException } from 'src/common/error/operation.exception';
 
 @ApiBearerAuth()
 @ApiTags('products')
@@ -15,33 +24,63 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) {}
 
   @Post()
-  create(@Body() createProductDto: CreateProductDto) {
-    return this.productsService.create(createProductDto);
+  async create(@Body() createProductDto: CreateProductDto) {
+    try {
+      return await this.productsService.create(createProductDto);
+    } catch (error) {
+      console.error(error);
+      throw new OperationException();
+    }
   }
 
   @ApiBody({ type: [CreateProductDto] })
   @Post('many')
-  createBulk(@Body() createProductDtoList: CreateProductDto[]) {
-    return this.productsService.createMany(createProductDtoList);
+  async createBulk(@Body() createProductDtoList: CreateProductDto[]) {
+    try {
+      return await this.productsService.createMany(createProductDtoList);
+    } catch (error) {
+      console.error(error);
+      throw new OperationException();
+    }
   }
 
   @Get()
   findAll() {
-    return this.productsService.findAll();
+    try {
+      return this.productsService.findAll();
+    } catch (error) {
+      console.error(error);
+      throw new OperationException();
+    }
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.productsService.findOne(+id);
+  async findOne(@Param('id') id: string) {
+    return await this.productsService.findOne(id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.productsService.update(+id, updateProductDto);
+  @ApiOkResponse({ description: 'Produto atualizado com sucesso!' })
+  @Put(':id')
+  async update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
+    try {
+      await this.productsService.update(id, updateProductDto);
+      return { message: 'Produto atualizado com sucesso!' };
+    } catch (error) {
+      console.error(error);
+      throw new OperationException();
+    }
   }
 
+  @HttpCode(204)
+  @ApiNoContentResponse({ description: 'Produto removido com sucesso!' })
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.productsService.remove(+id);
+  async remove(@Param('id') id: string) {
+    try {
+      await this.productsService.remove(id);
+      return;
+    } catch (error) {
+      console.error(error);
+      throw new OperationException();
+    }
   }
 }
