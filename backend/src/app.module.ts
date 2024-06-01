@@ -7,9 +7,10 @@ import { AuthModule } from './api/auth/auth.module';
 import { ProductsModule } from './api/products/products.module';
 import { UsersModule } from './api/users/users.module';
 import { QrcodeController } from './api/qrcode/qrcode.controller';
+import { PaymentsModule } from './api/payments/payments.module';
 
 @Module({
-  imports: [ProductsModule, ConfigModule.forRoot({ isGlobal: true }), DatabaseModule, AuthModule, UsersModule],
+  imports: [ProductsModule, ConfigModule.forRoot({ isGlobal: true }), DatabaseModule, AuthModule, UsersModule, PaymentsModule],
   controllers: [AppController, QrcodeController],
   providers: [AppService],
 })
