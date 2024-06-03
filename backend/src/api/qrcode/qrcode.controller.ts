@@ -5,6 +5,7 @@ import { ProductModel } from '../products/entities/product.entity';
 import { AuthGuard } from '../auth/auth.guard';
 import { GetQrCodeDto } from './dto/get-qrcode.dto';
 import { dataMock } from './mocks/qrcode.mock';
+import { dataMock2 } from './mocks/qrcode2.mock';
 
 @ApiTags('bot')
 @ApiBearerAuth()
@@ -19,11 +20,13 @@ export class QrcodeController {
   })
   @Post('/')
   async getQrCode(@Body() getQrCodeDto: GetQrCodeDto) {
-    const present = false;
+    const present = true;
     try {
       let data: any;
       if (present) {
+        data = Math.random() > 0.5 ? dataMock : dataMock2;
         data = dataMock;
+        data = dataMock2;
         return { data, message: 'Url do QrCode lido com sucesso! Produtos obtidos via web-scraping.' };
       }
       // {
