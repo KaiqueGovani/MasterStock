@@ -3,6 +3,7 @@ import { ApiBearerAuth, ApiOkResponse, ApiResponse, ApiTags, ApiUnauthorizedResp
 import { OperationException } from 'src/common/error/operation.exception';
 import { ProductModel } from '../products/entities/product.entity';
 import { AuthGuard } from '../auth/auth.guard';
+import { GetQrCodeDto } from './dto/get-qrcode.dto';
 
 @ApiTags('bot')
 @ApiBearerAuth()
@@ -16,14 +17,16 @@ export class QrcodeController {
     type: [ProductModel],
   })
   @Post('/')
-  async getQrCode(@Body() read_content: string) {
+  async getQrCode(@Body() getQrCodeDto: GetQrCodeDto) {
     try {
       const regex = /\b\d{44}\b/;
-      const match = read_content.match(regex);
+      const match = getQrCodeDto.read_content.match(regex);
       const extractedNumber = match ? match[0] : null;
-      console.error('extractedNumber', extractedNumber);
+      if (!extractedNumber) {
+        throw new Error('Não foi possível extrair o número do QrCode.');
+      }
 
-      const response = await fetch('http://bot:5000/consultar-cfe/' + read_content);
+      const response = await fetch('http://bot:5000/consultar-cfe/' + extractedNumber);
       const data = await response.json();
       return { data, message: 'Url do QrCode lido com sucesso! Produtos obtidos via web-scraping.' };
     } catch (error) {
