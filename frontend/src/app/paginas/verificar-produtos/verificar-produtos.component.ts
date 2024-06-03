@@ -89,14 +89,18 @@ export class VerificarProdutosComponent implements OnInit {
   private atualizarPreco(): void {
     let valorTotal = 0;
     this.produtos.forEach((produto) => {
-      produto.quantidade = parseInt(produto.quantidade)
-        .toFixed(2)
-        .replace('.', ',');
+      console.log(produto);
+
+      produto.quantidade = produto.quantidade.replace('.', ',');
       produto.valor_unitario = produto.valor_unitario.replace('.', '');
 
-      if (produto.valor_unitario.length >= 5) {
-        produto.valor_unitario = produto.valor_unitario.slice(0, -1);
-      }
+      // if (produto.valor_unitario.length >= 5) {
+      //   produto.valor_unitario = produto.valor_unitario.slice(0, -1);
+      // }
+
+      // if (produto.quantidade.length >= 5) {
+      //   produto.quantidade = produto.quantidade.slice(0, -2);
+      // }
 
       produto.valor_total = String(
         (
@@ -110,6 +114,21 @@ export class VerificarProdutosComponent implements OnInit {
     });
 
     this.valorTotal = valorTotal.toFixed(2).replace('.', ',');
+  }
+
+  public formataValor(valor: string): string {
+    if (valor.length >= 5) {
+      valor = valor.slice(0, -1);
+    }
+
+    return valor;
+  }
+
+  public formataQuantidade(quantidade: string): string {
+    if (quantidade.length >= 5) {
+      quantidade = quantidade.slice(0, -2);
+    }
+    return quantidade;
   }
 
   public confirmarProdutos(): void {

@@ -13,11 +13,11 @@
       <div (click)="abrirDetalhe(produto)" class="produto">
         <p class="nome">{{ produto.nome | titlecase }}</p>
 
-        <p>R$ {{ produto.valor_unitario }}</p>
+        <p>R$ {{ formataValor(produto.valor_unitario) }}</p>
 
-        <p>R$ {{ produto.valor_total }}</p>
+        <p>R$ {{ formataValor(produto.valor_total) }}</p>
 
-        <p>{{ produto.quantidade }}</p>
+        <p>{{ formataQuantidade(produto.quantidade) }}</p>
       </div>
     </ng-container>
 
