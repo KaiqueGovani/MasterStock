@@ -21,7 +21,7 @@ export class DashboardService {
         $project: {
           nome: 1,
           diferenca: {
-            $subtract: [
+            $divide: [
               {
                 $convert: {
                   input: { $replaceAll: { input: '$desejado', find: ',', replacement: '.' } },
