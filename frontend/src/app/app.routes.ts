@@ -8,6 +8,7 @@ import { authGuard } from './guards/auth.guard';
 import { EscanearComponent } from './componentes/escanear/escanear.component';
 import { VerificarProdutosComponent } from './paginas/verificar-produtos/verificar-produtos.component';
 import { confirmandoGuard } from './guards/confirmando.guard';
+import { ExtratoComponent } from './paginas/extrato/extrato.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -35,6 +36,11 @@ export const routes: Routes = [
   {
     path: 'produto-detalhe',
     component: DescricaoProdutoComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'extrato',
+    component: ExtratoComponent,
     canActivate: [authGuard],
   },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },

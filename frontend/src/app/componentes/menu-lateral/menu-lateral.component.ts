@@ -33,6 +33,12 @@ export class MenuLateralComponent {
       ativo: false,
     },
     {
+      nome: 'Extrato',
+      icon: 'receipt_long',
+      url: PaginaEnum.extrato,
+      ativo: false,
+    },
+    {
       nome: 'Escanear!',
       icon: 'qr_code',
       url: PaginaEnum.escanear,

@@ -1,0 +1,63 @@
+.extrato {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-display: column;
+  padding: 7rem 2rem 2rem;
+}
+
+.compra {
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.compra:not(:last-child) {
+  border-bottom: 1px solid var(--color-gray-700);
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 3rem;
+  width: 3rem;
+  background-color: var(--color-gray-500);
+  border-radius: 100%;
+}
+
+.info {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0 1.5rem;
+}
+
+.nome {
+  font-size: 1.25rem;
+  font-weight: 600;
+  width: 14rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--color-primary-400);
+}
+
+.data {
+  color: var(--color-primary-500);
+}
+
+.valor {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  color: var(--color-primary-500);
+  font-size: 0.9rem;
+}

@@ -1,12 +1,11 @@
-import { Component } from '@angular/core';
-import { CabecalhoComponent } from '../../componentes/cabecalho/cabecalho.component';
-import { Produto } from '../../models/produto.model';
-import { CommonModule } from '@angular/common';
-import { ItemProdutosComponent } from '../../componentes/item-produtos/item-produtos.component';
-import { PaginaEnum } from '../../enum/pagina.enum';
-import { ProdutoService } from '../../services/produto.service';
-import { ProdutoBot } from '../../models/produtoBot.model';
-import { SemProdutosComponent } from '../../componentes/sem-produtos/sem-produtos.component';
+import {Component} from '@angular/core';
+import {CabecalhoComponent} from '../../componentes/cabecalho/cabecalho.component';
+import {Produto} from '../../models/produto.model';
+import {CommonModule} from '@angular/common';
+import {ItemProdutosComponent} from '../../componentes/item-produtos/item-produtos.component';
+import {PaginaEnum} from '../../enum/pagina.enum';
+import {ProdutoService} from '../../services/produto.service';
+import {SemProdutosComponent} from '../../componentes/sem-produtos/sem-produtos.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -28,8 +27,6 @@ export class DashboardComponent {
 
   constructor(private produtoService: ProdutoService) {
     this.carregarProdutos();
-
-    console.log(this.produtosEstaVazio);
   }
 
   private async carregarProdutos(): Promise<void> {

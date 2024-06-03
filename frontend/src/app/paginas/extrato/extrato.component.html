@@ -1,0 +1,19 @@
+<app-cabecalho [nomePagina]="'Extrato'"></app-cabecalho>
+
+<div class="extrato">
+  <ng-container *ngFor="let compra of compras">
+    <div class="compra">
+      <div class="icon">
+        <span class="material-symbols-outlined"> shopping_cart </span>
+      </div>
+
+      <div class="info">
+        <p class="nome">{{ compra.nome_loja | titlecase }}</p>
+
+        <p class="data">{{ getDataFormatada(compra.data_pagamento) }}</p>
+      </div>
+
+      <p class="valor">{{ getValorFormatado(compra.valor) }}</p>
+    </div></ng-container
+  >
+</div>

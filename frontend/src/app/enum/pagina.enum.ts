@@ -5,4 +5,5 @@ export enum PaginaEnum {
   login = '/login',
   verificarProdutos = '/verificar-produtos',
   escanear = '/escanear',
+  extrato = '/extrato',
 }
