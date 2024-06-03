@@ -2,9 +2,11 @@ import requests
 import json
 from datetime import datetime
 
+
 def buscar_imagem_gtin(gtin):
     # Chave de API e ID do mecanismo de busca personalizado
-    google_api_key = "AIzaSyC83XpCpwXonliOJA27BZBTQbcfMQ0vuOI"
+    # kaique: AIzaSyBtIXpmbgieYemH7c1khYhlYjsNYEEsikM
+    google_api_key = "AIzaSyDyMXuKWs4C21oKSod4b8g_tHYsIK3bYC4"
     custom_search_engine_id = "56a4e26d21fa64acb"
 
     # URL da API de busca personalizada do Google
@@ -45,7 +47,9 @@ def consultar_chave(chave, save=False):
             dados_cfe = data.get("cfe", {}).get("dados_cfe", {})
             numero_cfe = dados_cfe.get("numero_cfe", "Informação não disponível")
             valor_cfe = dados_cfe.get("valor_cfe", "Informação não disponível")
-            data_hora = data.get("cfe", {}).get("data_hora_emissao", str(datetime.now()))
+            data_hora = data.get("cfe", {}).get(
+                "data_hora_emissao", str(datetime.now())
+            )
 
             emitente = data.get("emitente", {})
             nome_razao_social = emitente.get(
@@ -62,7 +66,7 @@ def consultar_chave(chave, save=False):
             informacoes["produtos"] = []
             for produto in produtos:
                 num = produto.get("num", "Informação não disponível")
-                descricao = produto.get("descricao", "Informação não disponível")
+                nome = produto.get("descricao", "Informação não disponível")
                 qtd_comercial = produto.get(
                     "qtd_comercial", "Informação não disponível"
                 )
@@ -74,7 +78,7 @@ def consultar_chave(chave, save=False):
                 imagem = buscar_imagem_gtin(codigo_gtin)
 
                 produto_info = {
-                    "descricao": descricao,
+                    "nome": nome,
                     "qtd_comercial": qtd_comercial,
                     "valor_unitario": valor_unitario,
                     "valor_bruto": valor_bruto,
@@ -82,12 +86,12 @@ def consultar_chave(chave, save=False):
                     "imagem": imagem,
                 }
                 informacoes["produtos"].append(produto_info)
-                
+
             if save:
-              with open(
-                  "informacoes_nota_fiscal.json", "w", encoding="utf-8"
-              ) as json_file:
-                  json.dump(informacoes, json_file, ensure_ascii=False, indent=4)
+                with open(
+                    "informacoes_nota_fiscal.json", "w", encoding="utf-8"
+                ) as json_file:
+                    json.dump(informacoes, json_file, ensure_ascii=False, indent=4)
 
             return informacoes
         else:
