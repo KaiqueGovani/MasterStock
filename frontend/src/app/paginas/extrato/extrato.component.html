@@ -8,12 +8,12 @@
       </div>
 
       <div class="info">
-        <p class="nome">{{ compra.nome_loja | titlecase }}</p>
+        <p class="nome">{{ compra.nome_razao_social | titlecase }}</p>
 
-        <p class="data">{{ getDataFormatada(compra.data_pagamento) }}</p>
+        <p class="data">{{ getDataFormatada(compra.data_hora) }}</p>
       </div>
 
-      <p class="valor">{{ getValorFormatado(compra.valor) }}</p>
+      <p class="valor">{{ getValorFormatado(compra.valor_completo) }}</p>
     </div></ng-container
   >
 </div>

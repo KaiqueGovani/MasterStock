@@ -9,7 +9,6 @@
   background-color: var(--color-gray-500);
   border-radius: 1rem;
   z-index: 0;
-  overflow: hidden;
 }
 
 .nome {

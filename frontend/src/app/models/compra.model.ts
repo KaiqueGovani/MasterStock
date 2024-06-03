@@ -1,9 +1,10 @@
 import { Produto } from './produto.model';
 
 export interface Compra {
-  id: string;
-  nome_loja: string;
+  // id: string;
+  nome_razao_social: string;
+  numero_cfe: string;
   produtos: Produto[];
-  valor: number;
-  data_pagamento: string;
+  valor_completo: string;
+  data_hora: string;
 }

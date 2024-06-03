@@ -27,12 +27,6 @@ export class MenuLateralComponent {
       ativo: false,
     },
     {
-      nome: 'Lista de compras',
-      icon: 'shopping_cart',
-      url: PaginaEnum.listaDeCompras,
-      ativo: false,
-    },
-    {
       nome: 'Extrato',
       icon: 'receipt_long',
       url: PaginaEnum.extrato,

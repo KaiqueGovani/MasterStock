@@ -77,7 +77,10 @@ export class VerificarService {
   }
 
   public salvarProdutos(produtos: Produto[]): void {
-    this.produtosBot.data.produtos = produtos as ProdutoBot[];
+    this.produtosBot.data.produtos = produtos.map((prod) => {
+      const { _id, ...rest } = prod;
+      return rest;
+    }) as ProdutoBot[];
 
     axiosInstance
       .post(EXTRATO_PATH, this.produtosBot.data)

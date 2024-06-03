@@ -43,7 +43,8 @@ export class ExtratoComponent {
     return `${nomeDiaSemana}, ${dataFormatada}`;
   }
 
-  public getValorFormatado(valor: number): string {
+  public getValorFormatado(valorS: string): string {
+    const valor = parseFloat(valorS);
     const valorFormatado = new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
