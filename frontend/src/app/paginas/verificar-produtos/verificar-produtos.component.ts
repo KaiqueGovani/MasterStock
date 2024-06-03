@@ -119,6 +119,7 @@ export class VerificarProdutosComponent implements OnInit {
     this.verificarService.salvarProdutos(this.produtos);
 
     this.router.navigateByUrl(PaginaEnum.produtos);
+    window.location.reload();
   }
 
   public abrirDetalhe(produto: Produto): void {

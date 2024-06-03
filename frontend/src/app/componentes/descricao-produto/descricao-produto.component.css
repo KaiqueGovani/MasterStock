@@ -115,16 +115,6 @@
   background-color: var(--color-info-500);
 }
 
-.favoritado {
-  position: absolute;
-  top: calc(50% - 0.65vh);
-  left: calc(50% - 1.2vw);
-  height: 0.9rem;
-  width: 0.9rem;
-  background-color: var(--color-white-500);
-  border-radius: 100%;
-}
-
 .feito {
   width: 80vw !important;
   height: 100%;

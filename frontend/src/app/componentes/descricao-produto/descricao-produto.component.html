@@ -2,7 +2,10 @@
 
 <div class="descricaoProduto">
   <ng-container *ngIf="mostrarMensagemConfirmacao">
-    <app-confirmacao (confirmado)="aoConfirmar($event)" [mensagem]="mensagemConfirmacao"></app-confirmacao>
+    <app-confirmacao
+      (confirmado)="aoConfirmar($event)"
+      [mensagem]="mensagemConfirmacao"
+    ></app-confirmacao>
   </ng-container>
 
   <div class="icons">
@@ -111,12 +114,17 @@
             [className]="opcao.nome"
             class="sombra"
           >
-            <span class="material-symbols-outlined icon">
+            <span
+              class="material-symbols-outlined icon"
+              [ngStyle]="{
+                'font-variation-settings':
+                  opcao.nome === OpcaoProdutoEnum.favoritar &&
+                  produto.favoritado
+                    ? '\'FILL\' 1'
+                    : '\'FILL\' 0'
+              }"
+            >
               {{ opcao.icone }}
-
-              <ng-container *ngIf="opcao.nome === OpcaoProdutoEnum.favoritar && produto.favoritado">
-                <div class="favoritado"></div>
-              </ng-container>
             </span>
           </button>
         </ng-container>

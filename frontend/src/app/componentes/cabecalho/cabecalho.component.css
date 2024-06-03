@@ -28,6 +28,11 @@
 .nomePagina {
   font-size: 1.5rem;
   font-weight: 600;
+  width: 22rem;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
   color: var(--color-primary-500);
 }
 

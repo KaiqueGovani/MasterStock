@@ -17,5 +17,13 @@ export class CabecalhoComponent {
 
   public toggleMenuLateral() {
     this.menuLateralAtivo = !this.menuLateralAtivo;
+
+    window.scrollTo(0, 0);
+
+    if (this.menuLateralAtivo) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
   }
 }

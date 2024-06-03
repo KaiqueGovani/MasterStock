@@ -86,7 +86,7 @@ export class ProdutoService {
 
   public estaEmFalta(produto: Produto): boolean {
     return !!produto.desejado
-      ? Number(produto.quantidade) <= Number(produto.desejado) * 0.33
+      ? parseFloat(produto.quantidade) <= parseFloat(produto.desejado) * 0.33
       : false;
   }
 }
