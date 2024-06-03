@@ -14,8 +14,8 @@ export class EscanearService {
 
   public async escanear(qrcode: string): Promise<ProdutosBot> {
     try {
-      const data: AxiosResponse<ProdutosBot> = await axiosInstance.get(
-        ESCANEAR_PATH + qrcode
+      const data: AxiosResponse<ProdutosBot> = await axiosInstance.post(
+        ESCANEAR_PATH, { read_content: qrcode }
       );
 
       return data.data;

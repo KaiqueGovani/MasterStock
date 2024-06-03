@@ -31,7 +31,9 @@ def get_qr_code_info_by_param(p):
 @app.route("/consultar-cfe/<chave>", methods=["GET"])
 def consultar_cfe(chave):
     try:
+        print("starting consultar_cfe")
         qr_code_info = consultar_chave(chave)
+        print("finished consultar_cfe")
         return jsonify(qr_code_info)
     except Exception as e:
         return jsonify({"error": str(e)}), 500

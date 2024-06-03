@@ -21,7 +21,7 @@ def buscar_imagem_gtin(gtin):
         return None
 
 
-def consultar_chave(chave):
+def consultar_chave(chave, save=False):
     # Chave teste: 35240301157555005416590008360823622700571612
     url = "https://api.infosimples.com/api/v2/consultas/sefaz/sp/cfe-completa"
     args = {
@@ -82,11 +82,12 @@ def consultar_chave(chave):
                     "imagem": imagem,
                 }
                 informacoes["produtos"].append(produto_info)
-
-            with open(
-                "informacoes_nota_fiscal.json", "w", encoding="utf-8"
-            ) as json_file:
-                json.dump(informacoes, json_file, ensure_ascii=False, indent=4)
+                
+            if save:
+              with open(
+                  "informacoes_nota_fiscal.json", "w", encoding="utf-8"
+              ) as json_file:
+                  json.dump(informacoes, json_file, ensure_ascii=False, indent=4)
 
             return informacoes
         else:

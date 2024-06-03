@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Logger, Post, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOkResponse, ApiResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { OperationException } from 'src/common/error/operation.exception';
 import { ProductModel } from '../products/entities/product.entity';
@@ -25,8 +25,11 @@ export class QrcodeController {
       if (!extractedNumber) {
         throw new Error('Não foi possível extrair o número do QrCode.');
       }
+      Logger.log('extractedNumber', extractedNumber);
 
       const response = await fetch('http://bot:5000/consultar-cfe/' + extractedNumber);
+      Logger.debug('Finished fetch!');
+      Logger.debug('response', response);
       const data = await response.json();
       return { data, message: 'Url do QrCode lido com sucesso! Produtos obtidos via web-scraping.' };
     } catch (error) {
