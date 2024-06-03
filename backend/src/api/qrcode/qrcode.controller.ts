@@ -19,6 +19,11 @@ export class QrcodeController {
   @Get(':p')
   async getQrCode(@Param('p') p: string) {
     try {
+      const regex = /\b\d{44}\b/;
+      const match = p.match(regex);
+      const extractedNumber = match ? match[0] : null;
+      console.error('extractedNumber', extractedNumber);
+
       const response = await fetch('http://bot:5000/qrcodep/' + p);
       const data = await response.json();
       return { data, message: 'Url do QrCode lido com sucesso! Produtos obtidos via web-scraping.' };

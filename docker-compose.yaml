@@ -34,6 +34,7 @@ services:
     volumes:
       - ./bot/app.py:/app/app.py
       - ./bot/webScraping.py:/app/webScraping.py
+      - ./bot/info.py:/app/info.py
     command: flask run --host=0.0.0.0 --debug
 
   # Serviço de banco de dados para dev local

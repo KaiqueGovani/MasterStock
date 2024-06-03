@@ -1,10 +1,13 @@
 from flask import Flask, request, jsonify
 from urllib.parse import unquote
 from webScraping import lerPaginaQrCode
+from info import consultar_chave
+import re
 
 app = Flask(__name__)
 
-sp_sefaz_url= "https://www.nfce.fazenda.sp.gov.br/NFCeConsultaPublica/Paginas/ConsultaQRCode.aspx?p="
+sp_sefaz_url = "https://www.nfce.fazenda.sp.gov.br/NFCeConsultaPublica/Paginas/ConsultaQRCode.aspx?p="
+
 
 @app.route("/qrcode/<path:url>", methods=["GET"])
 def get_qr_code_info(url):
@@ -20,6 +23,15 @@ def get_qr_code_info(url):
 def get_qr_code_info_by_param(p):
     try:
         qr_code_info = lerPaginaQrCode(sp_sefaz_url + unquote(p))
+        return jsonify(qr_code_info)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route("/consultar-cfe/<chave>", methods=["GET"])
+def consultar_cfe(chave):
+    try:
+        qr_code_info = consultar_chave(chave)
         return jsonify(qr_code_info)
     except Exception as e:
         return jsonify({"error": str(e)}), 500
