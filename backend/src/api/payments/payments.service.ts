@@ -14,34 +14,33 @@ export class PaymentsService {
   }
 
   async findAll() {
-    return [
-      {
-        nome_loja: 'Loja 1',
-        nome_produto: 'Produto 1',
-        valor: 100,
-        data_pagamento: new Date(),
-      },
-      {
-        nome_loja: 'Loja 2',
-        nome_produto: 'Produto 2',
-        valor: 200,
-        data_pagamento: new Date(),
-      },
-      {
-        nome_loja: 'Loja 3',
-        nome_produto: 'Produto 3',
-        valor: 300,
-        data_pagamento: new Date(),
-      },
-      {
-        nome_loja: 'Loja 4',
-        nome_produto: 'Produto 4',
-        valor: 400,
-        data_pagamento: new Date(),
-      },
-    ];
-
-    return await this.paymentModel.find();
+    // return [
+    //   {
+    //     nome_loja: 'Loja 1',
+    //     nome_produto: 'Produto 1',
+    //     valor: 100,
+    //     data_pagamento: new Date(),
+    //   },
+    //   {
+    //     nome_loja: 'Loja 2',
+    //     nome_produto: 'Produto 2',
+    //     valor: 200,
+    //     data_pagamento: new Date(),
+    //   },
+    //   {
+    //     nome_loja: 'Loja 3',
+    //     nome_produto: 'Produto 3',
+    //     valor: 300,
+    //     data_pagamento: new Date(),
+    //   },
+    //   {
+    //     nome_loja: 'Loja 4',
+    //     nome_produto: 'Produto 4',
+    //     valor: 400,
+    //     data_pagamento: new Date(),
+    //   },
+    // ];
+    return await this.paymentModel.find().sort({ data_hora: -1 });
   }
 
   findOne(id: number) {
