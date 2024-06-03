@@ -19,9 +19,13 @@ export class QrcodeController {
   })
   @Post('/')
   async getQrCode(@Body() getQrCodeDto: GetQrCodeDto) {
+    const present = false;
     try {
-      // Mocking for testing purposes
-      const data = dataMock;
+      let data: any;
+      if (present) {
+        data = dataMock;
+        return { data, message: 'Url do QrCode lido com sucesso! Produtos obtidos via web-scraping.' };
+      }
       // {
       //   data_hora: '2024-03-20 07:10:54',
       //   nome_razao_social: 'PERALTA DISTRIBUIDORA DE ALIMENTOS LTDA',
@@ -71,8 +75,6 @@ export class QrcodeController {
       //   valor_completo: '21,89',
       // };
 
-      return { data, message: 'Url do QrCode lido com sucesso! Produtos obtidos via web-scraping.' };
-
       const regex = /\b\d{44}\b/;
       const match = getQrCodeDto.read_content.match(regex);
       const extractedNumber = match ? match[0] : null;
@@ -84,7 +86,7 @@ export class QrcodeController {
       const response = await fetch('http://bot:5000/consultar-cfe/' + extractedNumber);
       Logger.debug('Finished fetch!');
       Logger.debug('response', response);
-      // const data = await response.json();
+      data = await response.json();
       return { data, message: 'Url do QrCode lido com sucesso! Produtos obtidos via web-scraping.' };
     } catch (error) {
       console.error('error', error);

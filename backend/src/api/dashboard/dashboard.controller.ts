@@ -28,7 +28,8 @@ export class DashboardController {
   @Get('products/need')
   async productsNeed() {
     try {
-      return (await this.dashboardService.productsNeed())[0]['total'];
+      const result = await this.dashboardService.productsNeed();
+      return result.length > 0 ? result[0]['total'] : 0;
     } catch (error) {
       console.error(error);
       throw new OperationException('Erro ao buscar produtos em falta!');

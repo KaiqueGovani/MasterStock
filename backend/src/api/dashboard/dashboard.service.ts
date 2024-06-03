@@ -20,31 +20,46 @@ export class DashboardService {
       {
         $project: {
           nome: 1,
-          diferenca: {
-            $divide: [
-              {
-                $convert: {
-                  input: { $replaceAll: { input: '$quantidade', find: ',', replacement: '.' } },
-                  to: 'double',
-                  onError: 1,
-                  onNull: 1,
-                },
+          desejado: 1,
+          quantidade: 1,
+        },
+      },
+      {
+        $addFields: {
+          cima: {
+            $convert: {
+              input: { $replaceAll: { input: '$desejado', find: ',', replacement: '.' } },
+              to: 'double',
+              onError: 0,
+              onNull: 0,
+            },
+          },
+          baixo: {
+            $convert: {
+              input: { $replaceAll: { input: '$quantidade', find: ',', replacement: '.' } },
+              to: 'double',
+              onError: 0,
+              onNull: 0,
+            },
+          },
+        },
+      },
+      {
+        $addFields: {
+          razao: {
+            $cond: {
+              if: { $eq: ['$baixo', 0] }, // Check the converted and adjusted 'baixo' field instead of original
+              then: 0, // Return 0 if 'baixo' is zero to avoid division by zero
+              else: {
+                $divide: ['$cima', '$baixo'],
               },
-              {
-                $convert: {
-                  input: { $replaceAll: { input: '$desejado', find: ',', replacement: '.' } },
-                  to: 'double',
-                  onError: 1,
-                  onNull: 1,
-                },
-              },
-            ],
+            },
           },
         },
       },
       {
         $match: {
-          diferenca: { $gt: 3 },
+          razao: { $gt: 3 },
         },
       },
       {
