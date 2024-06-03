@@ -1,4 +1,4 @@
-import { Controller, Get, Param, Delete, UseGuards, Post, Body } from '@nestjs/common';
+import { Controller, Get, Param, Delete, UseGuards, Post, Body, Logger } from '@nestjs/common';
 import { PaymentsService } from './payments.service';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiBearerAuth, ApiResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
@@ -16,6 +16,8 @@ export class PaymentsController {
 
   @Post()
   create(@Body() createPaymentDto: CreatePaymentDto) {
+    Logger.log('Creating payment');
+    Logger.log(createPaymentDto);
     return this.paymentsService.create(createPaymentDto);
   }
 

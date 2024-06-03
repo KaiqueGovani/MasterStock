@@ -1,21 +1,32 @@
-export class Payment {
+import { ProductPayment } from './product-payment.entity';
+
+export class PaymentModel {
   /**
-   * Nome da loja
+   * Data e hora da compra
+   * @example 2024-03-20 07:10:54
    */
-  nome_loja: string;
+  data_hora: Date;
 
   /**
-   * Nome do produto
+   * Nome ou razão social do estabelecimento
+   * @example PERALTA DISTRIBUIDORA DE ALIMENTOS LTDA
    */
-  nome_produto: string;
+  nome_razao_social: string;
 
   /**
-   * Valor do pagamento
+   * Número do CFe
+   * @example 049723
    */
-  valor: number;
+  numero_cfe: string;
 
   /**
-   * Data do pagamento
+   * Produtos comprados
    */
-  data_pagamento: Date;
+  produtos: ProductPayment[];
+
+  /**
+   * Valor total da compra
+   * @example 17.83
+   */
+  valor_completo: string;
 }
