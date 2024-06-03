@@ -8,6 +8,7 @@ import { ProductsModule } from './api/products/products.module';
 import { UsersModule } from './api/users/users.module';
 import { QrcodeController } from './api/qrcode/qrcode.controller';
 import { PaymentsModule } from './api/payments/payments.module';
+import { DashboardModule } from './api/dashboard/dashboard.module';
 
 @Module({
   imports: [
@@ -17,6 +18,7 @@ import { PaymentsModule } from './api/payments/payments.module';
     AuthModule,
     UsersModule,
     PaymentsModule,
+    DashboardModule,
   ],
   controllers: [AppController, QrcodeController],
   providers: [AppService],

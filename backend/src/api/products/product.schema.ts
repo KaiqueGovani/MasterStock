@@ -15,7 +15,7 @@ export class Product implements ProductModel {
   @Prop()
   quantidade?: string;
 
-  @Prop()
+  @Prop({ default: '0', apply: (value: string) => (value == '' ? '0' : value) })
   desejado?: string;
 
   @Prop({ required: true })

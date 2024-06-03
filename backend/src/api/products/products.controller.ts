@@ -13,6 +13,7 @@ import {
 } from '@nestjs/swagger';
 import { AuthGuard } from '../auth/auth.guard';
 import { OperationException } from 'src/common/error/operation.exception';
+import { ProductModel } from './entities/product.entity';
 
 @ApiBearerAuth()
 @ApiTags('products')
@@ -44,6 +45,7 @@ export class ProductsController {
     }
   }
 
+  @ApiOkResponse({ type: [ProductModel] })
   @Get()
   findAll() {
     try {
