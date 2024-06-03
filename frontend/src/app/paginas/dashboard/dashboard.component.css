@@ -23,3 +23,53 @@
 .sem-produtos {
   margin-left: 4rem;
 }
+
+.dashboard-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 2rem;
+  gap: 1rem;
+}
+
+.quantidade {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.total-produtos,
+.produtos-em-falta {
+  width: 12rem;
+  height: 12rem;
+  display: flex;
+  padding: 1rem;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: var(--color-gray-500);
+  border-radius: 1rem;
+  font-size: 3rem;
+}
+
+.valor-gasto-no-mes {
+  width: 25rem;
+  height: 12rem;
+  background-color: var(--color-gray-500);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 3rem;
+}
+
+.legenda {
+  font-size: 1rem;
+}

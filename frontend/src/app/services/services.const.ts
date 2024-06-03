@@ -5,3 +5,4 @@ export const AUTH_PATH = 'api/auth/verify-jwt-token';
 export const PRODUTOS_PATH = 'api/products';
 export const ESCANEAR_PATH = 'api/qrcode';
 export const EXTRATO_PATH = 'api/payments';
+export const DASHBOARD_PATH = 'api/dashboard';

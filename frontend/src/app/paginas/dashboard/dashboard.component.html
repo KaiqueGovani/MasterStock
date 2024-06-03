@@ -17,4 +17,23 @@
       </div>
     </ng-template>
   </div>
+
+  <div class="dashboard-info">
+    <div class="quantidade">
+      <div class="total-produtos sombra">
+        <p class="legenda">Quantidade de produtos:</p>
+        {{ totalProdutos }}
+      </div>
+
+      <div class="produtos-em-falta sombra">
+        <p class="legenda">Em falta:</p>
+        {{ produtosEmFalta }}
+      </div>
+    </div>
+
+    <div class="valor-gasto-no-mes sombra">
+      <p class="legenda">Valor gasto no mês:</p>
+      {{ formataValor(valorGastoNoMes) }}
+    </div>
+  </div>
 </div>

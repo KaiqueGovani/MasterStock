@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ItemMenu } from '../../models/itensMenu.model';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -12,7 +12,7 @@ import { PaginaEnum } from '../../enum/pagina.enum';
   templateUrl: './menu-lateral.component.html',
   styleUrl: './menu-lateral.component.css',
 })
-export class MenuLateralComponent {
+export class MenuLateralComponent implements OnDestroy {
   public itensMenu: ItemMenu[] = [
     {
       nome: 'Dashboard',
@@ -43,6 +43,9 @@ export class MenuLateralComponent {
 
   constructor(private router: Router, private loginService: LoginService) {
     this.verificaAtivo();
+  }
+  ngOnDestroy(): void {
+    document.body.style.overflow = 'auto';
   }
 
   public navegar(url: string): void {
