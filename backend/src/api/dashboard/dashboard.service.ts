@@ -24,18 +24,18 @@ export class DashboardService {
             $divide: [
               {
                 $convert: {
-                  input: { $replaceAll: { input: '$desejado', find: ',', replacement: '.' } },
+                  input: { $replaceAll: { input: '$quantidade', find: ',', replacement: '.' } },
                   to: 'double',
-                  onError: 0,
-                  onNull: 0,
+                  onError: 1,
+                  onNull: 1,
                 },
               },
               {
                 $convert: {
-                  input: { $replaceAll: { input: '$quantidade', find: ',', replacement: '.' } },
+                  input: { $replaceAll: { input: '$desejado', find: ',', replacement: '.' } },
                   to: 'double',
-                  onError: 0,
-                  onNull: 0,
+                  onError: 1,
+                  onNull: 1,
                 },
               },
             ],
