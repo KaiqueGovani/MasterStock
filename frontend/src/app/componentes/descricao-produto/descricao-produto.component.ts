@@ -1,23 +1,28 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import {Produto} from '../../models/produto.model';
-import {ProdutoService} from '../../services/produto.service';
-import {CabecalhoComponent} from '../cabecalho/cabecalho.component';
-import {CommonModule} from '@angular/common';
-import {Router} from '@angular/router';
-import {OpcaoProduto} from '../../models/opcaoProduto.model';
-import {OpcaoProdutoEnum} from '../../enum/opcaoProduto.enum';
-import {PaginaEnum} from '../../enum/pagina.enum';
-import {VerificarService} from '../../services/verificar.service';
-import {FormsModule} from '@angular/forms';
-import {ConfirmacaoComponent} from "../confirmacao/confirmacao.component";
+import { Produto } from '../../models/produto.model';
+import { ProdutoService } from '../../services/produto.service';
+import { CabecalhoComponent } from '../cabecalho/cabecalho.component';
+import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
+import { OpcaoProduto } from '../../models/opcaoProduto.model';
+import { OpcaoProdutoEnum } from '../../enum/opcaoProduto.enum';
+import { PaginaEnum } from '../../enum/pagina.enum';
+import { VerificarService } from '../../services/verificar.service';
+import { FormsModule } from '@angular/forms';
+import { ConfirmacaoComponent } from '../confirmacao/confirmacao.component';
 
 @Component({
   selector: 'app-descricao-produto',
   standalone: true,
   templateUrl: './descricao-produto.component.html',
   styleUrl: './descricao-produto.component.css',
-  imports: [CommonModule, FormsModule, CabecalhoComponent, ConfirmacaoComponent],
+  imports: [
+    CommonModule,
+    FormsModule,
+    CabecalhoComponent,
+    ConfirmacaoComponent,
+  ],
 })
 export class DescricaoProdutoComponent implements OnInit {
   public produto!: Produto;
@@ -26,7 +31,7 @@ export class DescricaoProdutoComponent implements OnInit {
   public pagina: PaginaEnum = PaginaEnum.produtos;
   public estaEditando: boolean = false;
   public estaConfirmando: boolean = false;
-  public mensagemConfirmacao: string = ''
+  public mensagemConfirmacao: string = '';
   public mostrarMensagemConfirmacao: boolean = false;
 
   public opcoes: OpcaoProduto[] = [
@@ -121,7 +126,7 @@ export class DescricaoProdutoComponent implements OnInit {
   }
 
   public aumentarQuantidade(): void {
-    const quantidade: number = Number(this.produto.quantidade) + 1;
+    const quantidade: string = String(Number(this.produto.quantidade) + 1);
 
     this.produto.quantidade = String(quantidade);
 
@@ -139,10 +144,10 @@ export class DescricaoProdutoComponent implements OnInit {
       return;
     }
 
-    const quantidade: number = Number(this.produto.quantidade) - 1;
+    const quantidade: string = String(Number(this.produto.quantidade) - 1);
 
     this.produto.quantidade = String(quantidade);
-    
+
     if (this.estaConfirmando) {
       this.verificarService.atualizarProduto(this.produto);
     } else {

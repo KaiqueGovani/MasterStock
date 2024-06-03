@@ -104,7 +104,7 @@ export class VerificarProdutosComponent implements OnInit {
   public confirmarProdutos(): void {
     localStorage.setItem('estaConfirmando', 'false');
 
-    this.produtoService.guardarProdutos(this.produtos);
+    this.verificarService.salvarProdutos(this.produtos);
 
     this.router.navigateByUrl(PaginaEnum.produtos);
   }

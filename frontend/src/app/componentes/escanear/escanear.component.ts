@@ -89,12 +89,10 @@ export class EscanearComponent implements AfterViewInit, OnDestroy {
       });
 
       if (qrcode) {
-        const qrcodeFormatado = qrcode.data.replace('?', '%3f');
-
         this.estaCarregando = true;
 
         const produtosBot: ProdutosBot = await this.escanearService.escanear(
-          qrcodeFormatado
+          qrcode.data
         );
 
         this.verificarService.guardarProdutos(produtosBot);

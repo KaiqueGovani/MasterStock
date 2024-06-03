@@ -1,8 +1,12 @@
 export interface ProdutoBot {
   codigo: string;
   nome: string;
-  quantidade: string;
-  valor_total: string;
+  descricao: string;
+  imagem: string;
+  qtd_comercial: string;
   valor_unitario: string;
-  data_compra: Date;
+  valor_total: string;
+  // valor_bruto: string;
+  // quantidade: string;
+  // data_compra: Date;
 }

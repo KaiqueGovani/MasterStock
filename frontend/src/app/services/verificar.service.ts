@@ -4,28 +4,37 @@ import { ProdutoBot } from '../models/produtoBot.model';
 import { ProdutosBot } from '../models/produtosBot.model';
 import { PaginaEnum } from '../enum/pagina.enum';
 import { Router } from '@angular/router';
+import axiosInstance from '../interceptors/axios.interceptor';
+import { EXTRATO_PATH } from './services.const';
 
 @Injectable({
   providedIn: 'root',
 })
 export class VerificarService {
   private produtosParaVerificar: Produto[] = [];
+  private produtosBot!: any;
   private valorTotal: string = '0,00';
 
   constructor(private router: Router) {}
 
   public guardarProdutos(produtosBot: ProdutosBot): void {
-    const produtos = produtosBot.produtos;
+    const produtos = produtosBot.data.produtos;
+
+    this.produtosBot = produtosBot;
 
     produtos.forEach((produto: ProdutoBot) => {
       this.produtosParaVerificar.push({
         _id: '',
-        ...produto,
         favoritado: false,
+        nome: produto.nome,
+        quantidade: produto.qtd_comercial,
+        valor_total: produto.valor_total,
+        valor_unitario: produto.valor_unitario,
+        data_compra: new Date(),
       });
     });
 
-    this.valorTotal = produtosBot.valor_completo;
+    this.valorTotal = produtosBot.data.valor_completo;
   }
 
   public guardarProdutosComData(produtos: Produto[]): void {
@@ -63,5 +72,19 @@ export class VerificarService {
     } else {
       return false;
     }
+  }
+
+  public salvarProdutos(produtos: Produto[]): void {
+    this.produtosBot.data.produtos = produtos;
+
+    axiosInstance
+      .post(EXTRATO_PATH, this.produtosBot.data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        throw err;
+      });
   }
 }
