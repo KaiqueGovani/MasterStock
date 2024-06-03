@@ -1,9 +1,9 @@
-import { Controller, Get, Param, Delete, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Delete, UseGuards, Post, Body } from '@nestjs/common';
 import { PaymentsService } from './payments.service';
-// import { CreatePaymentDto } from './dto/create-payment.dto';
 import { AuthGuard } from '../auth/auth.guard';
 import { ApiBearerAuth, ApiResponse, ApiTags, ApiUnauthorizedResponse } from '@nestjs/swagger';
 import { OperationException } from 'src/common/error/operation.exception';
+import { CreatePaymentDto } from './dto/create-payment.dto';
 
 @ApiBearerAuth()
 @ApiTags('payments')
@@ -14,10 +14,10 @@ import { OperationException } from 'src/common/error/operation.exception';
 export class PaymentsController {
   constructor(private readonly paymentsService: PaymentsService) {}
 
-  // @Post()
-  // create(@Body() createPaymentDto: CreatePaymentDto) {
-  //   return this.paymentsService.create(createPaymentDto);
-  // }
+  @Post()
+  create(@Body() createPaymentDto: CreatePaymentDto) {
+    return this.paymentsService.create(createPaymentDto);
+  }
 
   @Get()
   findAll() {

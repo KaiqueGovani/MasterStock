@@ -26,7 +26,7 @@ def consultar_chave(chave, save=False):
     url = "https://api.infosimples.com/api/v2/consultas/sefaz/sp/cfe-completa"
     args = {
         "chave": chave,
-        "token": "-6udFnfYFO9OeG64oZ5CjeaRvTwRNsWKRSEBfh1a",
+        "token": "e4MR7sOgjb0i-jO2Rx3ssOz8QTxgyRiqXq20pHHf",
         "timeout": 300,
     }
 
