@@ -89,21 +89,33 @@ export class VerificarProdutosComponent implements OnInit {
   private atualizarPreco(): void {
     let valorTotal = 0;
     this.produtos.forEach((produto) => {
+      produto.quantidade = parseInt(produto.quantidade)
+        .toFixed(2)
+        .replace('.', ',');
+      produto.valor_unitario = produto.valor_unitario.replace('.', '');
+
+      if (produto.valor_unitario.length >= 5) {
+        produto.valor_unitario = produto.valor_unitario.slice(0, -1);
+      }
+
       produto.valor_total = String(
         (
           Number(produto.valor_unitario.replace(',', '.')) *
-          Number(produto.quantidade)
-        ).toFixed(2)
+          Number(produto.quantidade.replace(',', '.'))
+        )
+          .toFixed(2)
+          .replace('.', ',')
       );
-      valorTotal += Number(produto.valor_total.replace(',', '.'));
+      valorTotal += parseFloat(produto.valor_total);
     });
 
-    this.valorTotal = valorTotal.toFixed(2);
+    this.valorTotal = valorTotal.toFixed(2).replace('.', ',');
   }
 
   public confirmarProdutos(): void {
     localStorage.setItem('estaConfirmando', 'false');
 
+    this.produtoService.guardarProdutos(this.produtos);
     this.verificarService.salvarProdutos(this.produtos);
 
     this.router.navigateByUrl(PaginaEnum.produtos);

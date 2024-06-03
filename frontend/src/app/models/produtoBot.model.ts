@@ -3,7 +3,7 @@ export interface ProdutoBot {
   nome: string;
   descricao: string;
   imagem: string;
-  qtd_comercial: string;
+  quantidade: string;
   valor_unitario: string;
   valor_total: string;
   // valor_bruto: string;

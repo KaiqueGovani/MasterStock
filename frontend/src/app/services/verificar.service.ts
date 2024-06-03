@@ -12,7 +12,7 @@ import { EXTRATO_PATH } from './services.const';
 })
 export class VerificarService {
   private produtosParaVerificar: Produto[] = [];
-  private produtosBot!: any;
+  private produtosBot!: ProdutosBot;
   private valorTotal: string = '0,00';
 
   constructor(private router: Router) {}
@@ -27,10 +27,12 @@ export class VerificarService {
         _id: '',
         favoritado: false,
         nome: produto.nome,
-        quantidade: produto.qtd_comercial,
+        quantidade: produto.quantidade,
         valor_total: produto.valor_total,
         valor_unitario: produto.valor_unitario,
-        data_compra: new Date(),
+        codigo: produto.codigo,
+        imagem: produto.imagem,
+        data_compra: new Date(produtosBot.data.data_hora),
       });
     });
 
@@ -75,7 +77,7 @@ export class VerificarService {
   }
 
   public salvarProdutos(produtos: Produto[]): void {
-    this.produtosBot.data.produtos = produtos;
+    this.produtosBot.data.produtos = produtos as ProdutoBot[];
 
     axiosInstance
       .post(EXTRATO_PATH, this.produtosBot.data)

@@ -126,7 +126,11 @@ export class DescricaoProdutoComponent implements OnInit {
   }
 
   public aumentarQuantidade(): void {
-    const quantidade: string = String(Number(this.produto.quantidade) + 1);
+    console.log(parseFloat(this.produto.quantidade));
+
+    const quantidade: string = `${String(
+      parseFloat(this.produto.quantidade) + 1
+    )},00`;
 
     this.produto.quantidade = String(quantidade);
 
@@ -144,7 +148,9 @@ export class DescricaoProdutoComponent implements OnInit {
       return;
     }
 
-    const quantidade: string = String(Number(this.produto.quantidade) - 1);
+    const quantidade: string = `${String(
+      parseFloat(this.produto.quantidade) - 1
+    )},00`;
 
     this.produto.quantidade = String(quantidade);
 
