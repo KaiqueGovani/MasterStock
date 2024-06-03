@@ -44,7 +44,7 @@
 
 .total-produtos,
 .produtos-em-falta {
-  width: 12rem;
+  width: 45%;
   height: 12rem;
   display: flex;
   padding: 1rem;
@@ -58,7 +58,7 @@
 }
 
 .valor-gasto-no-mes {
-  width: 25rem;
+  width: 90%;
   height: 12rem;
   background-color: var(--color-gray-500);
   border-radius: 1rem;
