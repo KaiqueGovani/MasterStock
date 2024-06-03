@@ -8,7 +8,7 @@ export const dataMock = {
       nome: 'LEITE INTEGRAL JUSSARA 1L',
       imagem: 'https://cdn-cosmos.bluesoft.com.br/products/7896283800221',
       qtd_comercial: '12,0000',
-      valor_bruto: '53,88',
+      valor_total: '53,88',
       valor_unitario: '4,490',
     },
     {
@@ -16,7 +16,7 @@ export const dataMock = {
       nome: 'AMAC COMFORT ENERGIA FLORAL 1,5L',
       imagem: 'https://images.openfoodfacts.org/images/products/789/115/007/9984/front_pt.3.full.jpg',
       qtd_comercial: '1,0000',
-      valor_bruto: '24,90',
+      valor_total: '24,90',
       valor_unitario: '24,900',
     },
     {
@@ -24,7 +24,7 @@ export const dataMock = {
       nome: 'COLA SUPER GEL THREE BOND 3g',
       imagem: 'https://static.daiso.com.br/produto/multifotos/hd/20211008123819_4519995481_DZ.jpg',
       qtd_comercial: '1,0000',
-      valor_bruto: '3,29',
+      valor_total: '3,29',
       valor_unitario: '3,290',
     },
     {
@@ -32,7 +32,7 @@ export const dataMock = {
       nome: 'AMAC CONC DOWNY 4X BRISA DE VERAO 500ml',
       imagem: 'https://redemix.vteximg.com.br/arquivos/ids/207051-1000-1000/7506195143834.jpg?v=638350592575930000',
       qtd_comercial: '1,0000',
-      valor_bruto: '8,99',
+      valor_total: '8,99',
       valor_unitario: '8,990',
     },
     {
@@ -40,7 +40,7 @@ export const dataMock = {
       nome: 'SAB LIQ PROTEX DUO PROTECT REFIL 500ml',
       imagem: 'https://cdn-cosmos.bluesoft.com.br/products/7509546665115',
       qtd_comercial: '1,0000',
-      valor_bruto: '17,99',
+      valor_total: '17,99',
       valor_unitario: '17,990',
     },
     {
@@ -48,7 +48,7 @@ export const dataMock = {
       nome: 'VINAGRE ALCOOL VITALIA 750ml',
       imagem: 'https://cdn-cosmos.bluesoft.com.br/products/7896048284631',
       qtd_comercial: '1,0000',
-      valor_bruto: '1,75',
+      valor_total: '1,75',
       valor_unitario: '1,750',
     },
     {
@@ -56,7 +56,7 @@ export const dataMock = {
       nome: 'OVOS GRANDE BRANCO POLPA 1DZ',
       imagem: 'https://static.fnac-static.com/multimedia/Images/PT/MC/6f/09/5c/22808943/1540-1.jpg',
       qtd_comercial: '1,0000',
-      valor_bruto: '8,89',
+      valor_total: '8,89',
       valor_unitario: '8,890',
     },
     {
@@ -64,7 +64,7 @@ export const dataMock = {
       nome: 'LAVA ROUPA PO BRILHANTE LIMP TOTAL 800g',
       imagem: 'https://cdn-cosmos.bluesoft.com.br/products/7891150086524',
       qtd_comercial: '1,0000',
-      valor_bruto: '10,69',
+      valor_total: '10,69',
       valor_unitario: '10,690',
     },
     {
@@ -72,7 +72,7 @@ export const dataMock = {
       nome: 'KIT LIMP VEJA 4X1 ORIGINAL 500ml',
       imagem: 'https://cdn-cosmos.bluesoft.com.br/products/7891035000539',
       qtd_comercial: '1,0000',
-      valor_bruto: '17,99',
+      valor_total: '17,99',
       valor_unitario: '17,990',
     },
     {
@@ -80,7 +80,7 @@ export const dataMock = {
       nome: 'LEITE COND MOCA 395g',
       imagem: 'https://cdn-cosmos.bluesoft.com.br/products/7891000100103',
       qtd_comercial: '1,0000',
-      valor_bruto: '6,99',
+      valor_total: '6,99',
       valor_unitario: '6,990',
     },
     {
@@ -88,7 +88,7 @@ export const dataMock = {
       nome: 'MILHO VERDE FUGINI SCH 170g',
       imagem: 'https://comper.vteximg.com.br/arquivos/ids/210981-1000-1000/7897517209544.jpg?v=637859085670830000',
       qtd_comercial: '1,0000',
-      valor_bruto: '3,05',
+      valor_total: '3,05',
       valor_unitario: '3,050',
     },
     {
@@ -96,7 +96,7 @@ export const dataMock = {
       nome: 'CR DE LEITE ITALAC TP 200g',
       imagem: 'https://cdn-cosmos.bluesoft.com.br/products/7898080640222',
       qtd_comercial: '2,0000',
-      valor_bruto: '5,90',
+      valor_total: '5,90',
       valor_unitario: '2,950',
     },
     {
@@ -104,7 +104,7 @@ export const dataMock = {
       nome: 'GEL ADESIVO REFIL AROMASIL LAVANDA 37g',
       imagem: 'https://canaldistribuidora.agilecdn.com.br/789364.jpg',
       qtd_comercial: '1,0000',
-      valor_bruto: '12,29',
+      valor_total: '12,29',
       valor_unitario: '12,290',
     },
     {
@@ -112,7 +112,7 @@ export const dataMock = {
       nome: '*K* ENERG MONSTER JUICE MANGO LOCO',
       imagem: 'https://armazemseuluiz.com.br/storage/app/uploads/public/63c/064/637/63c064637805f121203817',
       qtd_comercial: '3,0000',
-      valor_bruto: '20,85',
+      valor_total: '20,85',
       valor_unitario: '6,950',
     },
     {
@@ -120,7 +120,7 @@ export const dataMock = {
       nome: 'FERMENTO PO D BENTA TRAD 100g',
       imagem: 'https://cdn-cosmos.bluesoft.com.br/products/7896005279489',
       qtd_comercial: '1,0000',
-      valor_bruto: '3,25',
+      valor_total: '3,25',
       valor_unitario: '3,250',
     },
     {
@@ -129,7 +129,7 @@ export const dataMock = {
       imagem:
         'https://www.varanda.com.br/media/catalog/product/cache/1/image/1200x/9df78eab33525d08d6e5fb8d27136e95/g/e/geleia-queensb-diet-morango-280g-7896214533006.jpg',
       qtd_comercial: '1,0000',
-      valor_bruto: '20,50',
+      valor_total: '20,50',
       valor_unitario: '20,500',
     },
     {
@@ -137,7 +137,7 @@ export const dataMock = {
       nome: 'CONDIC TRESEMME REC E FOR 650ml',
       imagem: 'https://cdn-cosmos.bluesoft.com.br/products/7891150091238',
       qtd_comercial: '1,0000',
-      valor_bruto: '24,89',
+      valor_total: '24,89',
       valor_unitario: '24,890',
     },
     {
@@ -145,7 +145,7 @@ export const dataMock = {
       nome: 'CHA PTO LEAO PESSEGO PET 1,5L',
       imagem: 'https://tinocosupermercados.com.br/wp-content/uploads/2022/05/7891098040602.jpg',
       qtd_comercial: '1,0000',
-      valor_bruto: '7,55',
+      valor_total: '7,55',
       valor_unitario: '7,550',
     },
     {
@@ -153,7 +153,7 @@ export const dataMock = {
       nome: 'PAPEL HIG FD SELECT L12 P11 30m',
       imagem: null,
       qtd_comercial: '1,0000',
-      valor_bruto: '18,49',
+      valor_total: '18,49',
       valor_unitario: '18,490',
     },
   ],

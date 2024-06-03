@@ -81,7 +81,7 @@ def consultar_chave(chave, save=False):
                     "nome": nome,
                     "qtd_comercial": qtd_comercial,
                     "valor_unitario": valor_unitario,
-                    "valor_bruto": valor_bruto,
+                    "valor_total": valor_bruto,
                     "codigo": codigo_gtin,
                     "imagem": imagem,
                 }
