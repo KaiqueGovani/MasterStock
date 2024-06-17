@@ -12,6 +12,13 @@ MasterStock-main/
 ├── backend/                # Backend do projeto
 │   ├── src/                # Código-fonte principal do backend
 │   │   ├── api/            # Endpoints da API
+│   │   │   ├── auth/       # Módulo de autenticação
+│   │   │   │   ├── auth.controller.ts  # Controlador de autenticação
+│   │   │   │   ├── auth.module.ts      # Módulo de autenticação
+│   │   │   │   ├── auth.service.ts     # Serviço de autenticação
+│   │   │   ├── produtos/  # Módulo de produtos
+│   │   │   │   ├── produtos.controller.ts # Controlador de produtos
+│   │   │   │   ├── produtos.service.ts    # Serviço de produtos
 │   │   ├── app.controller.ts   # Controlador principal
 │   │   ├── app.module.ts       # Módulo principal
 │   │   ├── app.service.ts      # Serviço principal
@@ -25,8 +32,16 @@ MasterStock-main/
 │   ├── src/                # Código-fonte principal do frontend
 │   │   ├── app/            # Componentes e serviços do Angular
 │   │   │   ├── componentes/   # Componentes Angular
+│   │   │   │   ├── header/    # Componente de cabeçalho
+│   │   │   │   ├── footer/    # Componente de rodapé
 │   │   │   ├── paginas/       # Páginas do Angular
+│   │   │   │   ├── login/     # Página de login
+│   │   │   │   ├── produtos/  # Página de produtos
+│   │   │   │   ├── extrato/   # Página de extrato
 │   │   │   ├── services/      # Serviços do Angular
+│   │   │   │   ├── auth.service.ts     # Serviço de autenticação
+│   │   │   │   ├── produtos.service.ts # Serviço de produtos
+│   │   │   │   ├── extrato.service.ts  # Serviço de extrato
 │   ├── angular.json        # Configuração do Angular
 │   ├── Dockerfile          # Dockerfile para o frontend
 │   ├── package.json        # Dependências e scripts do frontend
@@ -108,6 +123,22 @@ MasterStock-main/
 - `build`: Compila a aplicação Angular.
 - `test`: Executa os testes automatizados.
 - `lint`: Verifica o código-fonte em busca de problemas de estilo.
+
+## Funcionalidades do Projeto
+
+### Backend
+
+- **Autenticação:** Implementada no módulo `auth`, utilizando JWT para segurança.
+- **Gerenciamento de Produtos:** Endpoints para criar, atualizar, deletar e listar produtos no módulo `produtos`.
+- **Serviços Principais:** `app.service.ts` gerencia a lógica principal da aplicação, enquanto `auth.service.ts` e `produtos.service.ts` lidam com a autenticação e gerenciamento de produtos, respectivamente.
+
+### Frontend
+
+- **Login:** Página de login (`login.component.ts`) que autentica o usuário.
+- **Dashboard de Produtos:** Página de produtos (`produtos.component.ts`) que exibe e gerencia os produtos.
+- **Extratos:** Página de extrato (`extrato.component.ts`) que mostra o histórico de transações.
+- **Componentes Reutilizáveis:** Componentes de cabeçalho e rodapé para navegação consistente.
+- **Serviços:** Serviços como `auth.service.ts` para autenticação, `produtos.service.ts` para produtos e `extrato.service.ts` para extratos que fazem a comunicação com o backend via HTTP.
 
 ## Configuração do Docker
 
