@@ -1,0 +1,48 @@
+export const dataMock3 = {
+  data_hora: '2024-03-20 07:10:54',
+  nome_razao_social: 'PERALTA DISTRIBUIDORA DE ALIMENTOS LTDA',
+  numero_cfe: '049723',
+  produtos: [
+    {
+      codigo: '00000000037563',
+      descricao: 'CAQUI CHOCOLATE',
+      imagem: null,
+      qtd_comercial: '0,4400',
+      valor_bruto: '6,55',
+      valor_unitario: '14,900',
+    },
+    {
+      codigo: '00000000017947',
+      descricao: 'PERA PORTUGUESA',
+      imagem: null,
+      qtd_comercial: '0,2750',
+      valor_bruto: '5,19',
+      valor_unitario: '18,900',
+    },
+    {
+      codigo: '00000000015127',
+      descricao: 'BANANA NANICA',
+      imagem: null,
+      qtd_comercial: '0,4050',
+      valor_bruto: '2,22',
+      valor_unitario: '5,490',
+    },
+    {
+      codigo: '00000000019392',
+      descricao: 'PAO FRANCES KG',
+      imagem: null,
+      qtd_comercial: '0,1800',
+      valor_bruto: '2,87',
+      valor_unitario: '15,980',
+    },
+    {
+      codigo: '00000000049115',
+      descricao: 'AMEIXA FRESCA I',
+      imagem: null,
+      qtd_comercial: '0,3900',
+      valor_bruto: '5,06',
+      valor_unitario: '12,980',
+    },
+  ],
+  valor_completo: '21,89',
+};
