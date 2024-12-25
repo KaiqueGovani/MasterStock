@@ -8,45 +8,225 @@ MasterStock é uma aplicação para gerenciamento de estoque, oferecendo funcion
 O projeto está organizado da seguinte forma:
 
 ```
-MasterStock-main/
-├── backend/                # Backend do projeto
-│   ├── src/                # Código-fonte principal do backend
-│   │   ├── api/            # Endpoints da API
-│   │   │   ├── auth/       # Módulo de autenticação
-│   │   │   │   ├── auth.controller.ts  # Controlador de autenticação
-│   │   │   │   ├── auth.module.ts      # Módulo de autenticação
-│   │   │   │   ├── auth.service.ts     # Serviço de autenticação
-│   │   │   ├── produtos/  # Módulo de produtos
-│   │   │   │   ├── produtos.controller.ts # Controlador de produtos
-│   │   │   │   ├── produtos.service.ts    # Serviço de produtos
-│   │   ├── app.controller.ts   # Controlador principal
-│   │   ├── app.module.ts       # Módulo principal
-│   │   ├── app.service.ts      # Serviço principal
-│   │   ├── main.ts             # Arquivo de entrada da aplicação
-│   ├── Dockerfile            # Dockerfile para o backend
-│   ├── nest-cli.json         # Configuração do NestJS
-│   ├── package.json          # Dependências e scripts do backend
-│   ├── tsconfig.build.json   # Configuração de build do TypeScript
-│   ├── tsconfig.json         # Configuração do TypeScript
-├── frontend/               # Frontend do projeto
-│   ├── src/                # Código-fonte principal do frontend
-│   │   ├── app/            # Componentes e serviços do Angular
-│   │   │   ├── componentes/   # Componentes Angular
-│   │   │   │   ├── header/    # Componente de cabeçalho
-│   │   │   │   ├── footer/    # Componente de rodapé
-│   │   │   ├── paginas/       # Páginas do Angular
-│   │   │   │   ├── login/     # Página de login
-│   │   │   │   ├── produtos/  # Página de produtos
-│   │   │   │   ├── extrato/   # Página de extrato
-│   │   │   ├── services/      # Serviços do Angular
-│   │   │   │   ├── auth.service.ts     # Serviço de autenticação
-│   │   │   │   ├── produtos.service.ts # Serviço de produtos
-│   │   │   │   ├── extrato.service.ts  # Serviço de extrato
-│   ├── angular.json        # Configuração do Angular
-│   ├── Dockerfile          # Dockerfile para o frontend
-│   ├── package.json        # Dependências e scripts do frontend
-├── docker-compose.yaml     # Arquivo para orquestração dos containers Docker
-└── README.md               # Documentação do projeto
+└── KaiqueGovani-MasterStock/
+    ├── backend/
+    │   ├── .prettierrc
+    │   ├── .gitignore
+    │   ├── .eslintrc.js
+    │   ├── test/
+    │   │   ├── app.e2e-spec.ts
+    │   │   └── jest-e2e.json
+    │   ├── package.json
+    │   ├── nest-cli.json
+    │   ├── Dockerfile
+    │   ├── tsconfig.json
+    │   ├── package-lock.json
+    │   ├── README.md
+    │   ├── tsconfig.build.json
+    │   └── src/
+    │       ├── api/
+    │       │   ├── payments/
+    │       │   │   ├── payments.controller.spec.ts
+    │       │   │   ├── payments.service.ts
+    │       │   │   ├── dto/
+    │       │   │   │   ├── update-payment.dto.ts
+    │       │   │   │   └── create-payment.dto.ts
+    │       │   │   ├── payments.service.spec.ts
+    │       │   │   ├── payment.schema.ts
+    │       │   │   ├── entities/
+    │       │   │   │   ├── product-payment.entity.ts
+    │       │   │   │   └── payment.entity.ts
+    │       │   │   ├── payments.module.ts
+    │       │   │   └── payments.controller.ts
+    │       │   ├── auth/
+    │       │   │   ├── auth.guard.spec.ts
+    │       │   │   ├── auth.service.ts
+    │       │   │   ├── auth.guard.ts
+    │       │   │   ├── dto/
+    │       │   │   │   ├── login.dto.ts
+    │       │   │   │   └── generate-jwt-token.dto.ts
+    │       │   │   ├── auth.controller.spec.ts
+    │       │   │   ├── auth.module.ts
+    │       │   │   ├── auth.controller.ts
+    │       │   │   └── auth.service.spec.ts
+    │       │   ├── qrcode/
+    │       │   │   ├── qrcode.controller.spec.ts
+    │       │   │   ├── dto/
+    │       │   │   │   └── get-qrcode.dto.ts
+    │       │   │   ├── mocks/
+    │       │   │   │   ├── qrcode.mock.ts
+    │       │   │   │   ├── qrcode3.mock.ts
+    │       │   │   │   └── qrcode2.mock.ts
+    │       │   │   └── qrcode.controller.ts
+    │       │   ├── products/
+    │       │   │   ├── dto/
+    │       │   │   │   ├── create-product.dto.ts
+    │       │   │   │   └── update-product.dto.ts
+    │       │   │   ├── products.controller.ts
+    │       │   │   ├── products.module.ts
+    │       │   │   ├── entities/
+    │       │   │   │   └── product.entity.ts
+    │       │   │   ├── products.service.ts
+    │       │   │   ├── product.schema.ts
+    │       │   │   ├── products.service.spec.ts
+    │       │   │   └── products.controller.spec.ts
+    │       │   ├── dashboard/
+    │       │   │   ├── dashboard.controller.ts
+    │       │   │   ├── dashboard.module.ts
+    │       │   │   ├── dashboard.controller.spec.ts
+    │       │   │   ├── dashboard.service.spec.ts
+    │       │   │   └── dashboard.service.ts
+    │       │   └── users/
+    │       │       ├── users.controller.spec.ts
+    │       │       ├── dto/
+    │       │       │   └── register.dto.ts
+    │       │       ├── user.schema.ts
+    │       │       ├── entities/
+    │       │       │   └── user.entity.ts
+    │       │       ├── users.service.ts
+    │       │       ├── users.controller.ts
+    │       │       ├── users.module.ts
+    │       │       └── users.service.spec.ts
+    │       ├── app.module.ts
+    │       ├── main.ts
+    │       ├── app.controller.spec.ts
+    │       ├── common/
+    │       │   ├── docs/
+    │       │   │   └── document.factory.ts
+    │       │   ├── error/
+    │       │   │   └── operation.exception.ts
+    │       │   └── database/
+    │       │       ├── database.module.ts
+    │       │       └── database.config.ts
+    │       ├── app.controller.ts
+    │       └── app.service.ts
+    ├── frontend/
+    │   ├── .vscode/
+    │   │   ├── tasks.json
+    │   │   ├── launch.json
+    │   │   └── extensions.json
+    │   ├── .gitignore
+    │   ├── tsconfig.app.json
+    │   ├── package.json
+    │   ├── tsconfig.spec.json
+    │   ├── proxy.conf.json
+    │   ├── Dockerfile
+    │   ├── tsconfig.json
+    │   ├── package-lock.json
+    │   ├── README.md
+    │   ├── src/
+    │   │   ├── index.html
+    │   │   ├── styles.css
+    │   │   ├── assets/
+    │   │   │   └── .gitkeep
+    │   │   ├── main.ts
+    │   │   └── app/
+    │   │       ├── app.routes.ts
+    │   │       ├── app.config.ts
+    │   │       ├── services/
+    │   │       │   ├── produto.service.ts
+    │   │       │   ├── escanear.service.ts
+    │   │       │   ├── services.const.ts
+    │   │       │   ├── dashboard.service.ts
+    │   │       │   ├── verificar.service.ts
+    │   │       │   ├── login.service.ts
+    │   │       │   └── extrato.service.ts
+    │   │       ├── paginas/
+    │   │       │   ├── verificar-produtos/
+    │   │       │   │   ├── verificar-produtos.component.css
+    │   │       │   │   ├── verificar-produtos.component.ts
+    │   │       │   │   └── verificar-produtos.component.html
+    │   │       │   ├── dashboard/
+    │   │       │   │   ├── dashboard.component.ts
+    │   │       │   │   ├── dashboard.component.html
+    │   │       │   │   └── dashboard.component.css
+    │   │       │   ├── login/
+    │   │       │   │   ├── login.component.html
+    │   │       │   │   ├── login.component.css
+    │   │       │   │   └── login.component.ts
+    │   │       │   ├── extrato/
+    │   │       │   │   ├── extrato.component.html
+    │   │       │   │   ├── extrato.component.ts
+    │   │       │   │   └── extrato.component.css
+    │   │       │   └── produtos/
+    │   │       │       ├── produtos.component.ts
+    │   │       │       ├── produtos.component.html
+    │   │       │       └── produtos.component.css
+    │   │       ├── app.component.css
+    │   │       ├── models/
+    │   │       │   ├── produtosBot.model.ts
+    │   │       │   ├── produtoBot.model.ts
+    │   │       │   ├── token.model.ts
+    │   │       │   ├── compra.model.ts
+    │   │       │   ├── itensMenu.model.ts
+    │   │       │   ├── opcaoProduto.model.ts
+    │   │       │   ├── cadastro.model.ts
+    │   │       │   ├── usuario.model.ts
+    │   │       │   ├── produto.model.ts
+    │   │       │   └── login.model.ts
+    │   │       ├── enum/
+    │   │       │   ├── opcaoProduto.enum.ts
+    │   │       │   └── pagina.enum.ts
+    │   │       ├── componentes/
+    │   │       │   ├── sem-produtos/
+    │   │       │   │   ├── sem-produtos.component.html
+    │   │       │   │   ├── sem-produtos.component.ts
+    │   │       │   │   └── sem-produtos.component.css
+    │   │       │   ├── cabecalho/
+    │   │       │   │   ├── cabecalho.component.ts
+    │   │       │   │   ├── cabecalho.component.html
+    │   │       │   │   └── cabecalho.component.css
+    │   │       │   ├── loader/
+    │   │       │   │   ├── loader.component.html
+    │   │       │   │   ├── loader.component.css
+    │   │       │   │   └── loader.component.ts
+    │   │       │   ├── descricao-produto/
+    │   │       │   │   ├── descricao-produto.component.css
+    │   │       │   │   ├── descricao-produto.component.ts
+    │   │       │   │   └── descricao-produto.component.html
+    │   │       │   ├── confirmacao/
+    │   │       │   │   ├── confirmacao.component.css
+    │   │       │   │   ├── confirmacao.component.html
+    │   │       │   │   └── confirmacao.component.ts
+    │   │       │   ├── item-lista-compras/
+    │   │       │   │   ├── item-lista-compras.component.css
+    │   │       │   │   ├── item-lista-compras.component.ts
+    │   │       │   │   └── item-lista-compras.component.html
+    │   │       │   ├── menu-lateral/
+    │   │       │   │   ├── menu-lateral.component.css
+    │   │       │   │   ├── menu-lateral.component.html
+    │   │       │   │   └── menu-lateral.component.ts
+    │   │       │   ├── escanear/
+    │   │       │   │   ├── escanear.component.ts
+    │   │       │   │   ├── escanear.const.ts
+    │   │       │   │   ├── escanear.component.html
+    │   │       │   │   └── escanear.component.css
+    │   │       │   ├── item-produtos/
+    │   │       │   │   ├── item-produtos.component.css
+    │   │       │   │   ├── item-produtos.component.ts
+    │   │       │   │   └── item-produtos.component.html
+    │   │       │   └── grafico-produto/
+    │   │       │       ├── grafico-produto.component.css
+    │   │       │       ├── grafico-produto.component.ts
+    │   │       │       └── grafico-produto.component.html
+    │   │       ├── interceptors/
+    │   │       │   └── axios.interceptor.ts
+    │   │       ├── guards/
+    │   │       │   ├── auth.guard.ts
+    │   │       │   └── confirmando.guard.ts
+    │   │       ├── app.component.ts
+    │   │       └── app.component.html
+    │   ├── .editorconfig
+    │   └── angular.json
+    ├── docker-compose.yaml
+    ├── .dockerignore
+    ├── bot/
+    │   ├── info.py
+    │   ├── app.py
+    │   ├── requirements.txt
+    │   ├── Dockerfile
+    │   └── webScraping.py
+    └── README.md
 ```
 
 ## Configuração e Instalação
